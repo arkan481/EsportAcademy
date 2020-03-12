@@ -51,23 +51,40 @@
         android:drawableRight="@drawable/personwhite"
         android:drawableBottom="@drawable/whiteline"
         />
-    <EditText
-        android:id="@+id/etpasswordlogid"
+    <LinearLayout
         android:paddingRight="20dp"
-        android:layout_width="278dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:id="@+id/LRpwlogid"
+        android:elevation="2dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/etusernamelogid"
-        android:layout_marginTop="50dp"
-        android:textColor="@android:color/white"
-        android:elevation="2dp"
-        android:hint="Password"
-        android:textColorHint="@android:color/white"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:drawableRight="@drawable/eyewhite"
-        android:drawableBottom="@drawable/whiteline"
-        />
+        android:layout_width="278dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/etwhiteline"
+        >
+        <EditText
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:elevation="1dp"
+            android:id="@+id/etpasswordlogid"
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:hint="Password"
+            android:textColorHint="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            />
+        <ImageView
+            android:id="@+id/IVeyelogid"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_visibility_off_white_24dp"
+            />
+    </LinearLayout>
     <TextView
         android:id="@+id/tvforgotlogid"
         android:paddingRight="20dp"
@@ -79,7 +96,7 @@
         android:textColor="#20FF72"
         android:elevation="2dp"
         android:textStyle="bold|italic"
-        android:layout_below="@id/etpasswordlogid"
+        android:layout_below="@id/LRpwlogid"
         android:layout_centerHorizontal="true"
         android:textSize="13sp"
         />

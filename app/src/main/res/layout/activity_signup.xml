@@ -50,40 +50,74 @@
         android:drawableRight="@drawable/personwhite"
         android:drawableBottom="@drawable/whiteline"
         />
-    <EditText
-        android:id="@+id/etpasswordlogid"
+    <LinearLayout
         android:paddingRight="20dp"
-        android:layout_width="278dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:id="@+id/LRpwsignid"
+        android:elevation="2dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/etusernamelogid"
-        android:layout_marginTop="50dp"
-        android:textColor="@android:color/white"
-        android:elevation="2dp"
-        android:hint="Password"
-        android:textColorHint="@android:color/white"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:drawableRight="@drawable/eyewhite"
-        android:drawableBottom="@drawable/whiteline"
-        />
-    <EditText
-        android:id="@+id/etconfpasswordlogid"
-        android:paddingRight="20dp"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/etpasswordlogid"
+        android:orientation="horizontal"
+        android:background="@drawable/etwhiteline"
+        >
+        <EditText
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:elevation="1dp"
+            android:id="@+id/etpasswordsignid"
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:hint="Password"
+            android:textColorHint="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            />
+        <ImageView
+            android:id="@+id/IVeyesign1id"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_visibility_off_white_24dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:paddingRight="20dp"
         android:layout_marginTop="50dp"
-        android:textColor="@android:color/white"
+        android:id="@+id/LRpwconfsignid"
         android:elevation="2dp"
-        android:hint="Confirm Password"
-        android:textColorHint="@android:color/white"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:drawableRight="@drawable/eyewhite"
-        android:drawableBottom="@drawable/whiteline"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/LRpwsignid"
+        android:layout_width="278dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/etwhiteline"
+        >
+        <EditText
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:elevation="1dp"
+            android:id="@+id/etconfpasswordsignid"
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:hint="Confirm Password"
+            android:textColorHint="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            />
+        <ImageView
+            android:id="@+id/IVeyesign2id"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_visibility_off_white_24dp"
+            />
+    </LinearLayout>
     <CheckBox
         android:id="@+id/checkboxsignupid"
         android:buttonTint="@android:color/white"
@@ -91,7 +125,7 @@
         android:elevation="2dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/etconfpasswordlogid"
+        android:layout_below="@id/LRpwconfsignid"
         android:text="Agree to terms and conditions"
         android:textColor="@android:color/white"
         android:textStyle="bold"
