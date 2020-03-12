@@ -48,7 +48,7 @@
         android:textColorHint="@android:color/white"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:drawableRight="@drawable/personwhite"
+        android:drawableRight="@drawable/ic_account_circle_white_24dp"
         android:drawableBottom="@drawable/whiteline"
         />
     <LinearLayout
