@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundplayer2"
+    >
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/blacktranselev"
+        android:elevation="1dp"
+        />
+    <ImageView
+        android:id="@+id/IVlogovp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89.33dp"
+        android:layout_marginLeft="41.68dp"
+        android:layout_marginRight="39.99dp"
+        android:src="@drawable/logotext"
+        android:elevation="2dp"
+        />
+    <TextView
+        android:layout_marginRight="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_below="@id/IVlogovp1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="161.45dp"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:text="Masuk tim Esport dan cari Tournament di Esport Academy"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:elevation="1dp"
+        />
+    <LinearLayout
+        android:layout_marginBottom="40dp"
+        android:elevation="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eclipseblue"
+            />
+        <ImageView
+            android:layout_marginLeft="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eclipseblue"
+            />
+        <ImageView
+            android:layout_marginLeft="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eclipsewhite"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
