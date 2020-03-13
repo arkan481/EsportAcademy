@@ -14,9 +14,11 @@ import android.widget.ListView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.RVGamesAdapter;
+import com.example.esportacademy.adapters.RVProplayerAdapter;
 import com.example.esportacademy.adapters.ViewPagerAutoAdapter;
 import com.example.esportacademy.adapters.ViewPagerGamesAdapter;
 import com.example.esportacademy.models.GameModel;
+import com.example.esportacademy.models.ProPlayerModel;
 
 import java.util.ArrayList;
 
@@ -25,11 +27,13 @@ import java.util.ArrayList;
  */
 public class FragmentHome extends Fragment {
 
-    RecyclerView rvgameshome;
+    private RecyclerView rvgameshome,rvproplayerhome;
 
     private ArrayList<GameModel> gameModels;
     private RecyclerView.Adapter rvadapter;
     private RVGamesAdapter rvGamesAdapter;
+    private ArrayList<ProPlayerModel>proPlayerModels;
+    private RVProplayerAdapter rvProplayerAdapter;
 
     public FragmentHome() {
         // Required empty public constructor
@@ -42,7 +46,9 @@ public class FragmentHome extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         rvgameshome = v.findViewById(R.id.rvgameshomeid);
+        rvproplayerhome = v.findViewById(R.id.rvproplayerid);
         populategamemodel();
+        populateproplayermodel();
         return v;
     }
     private void populategamemodel() {
@@ -53,5 +59,13 @@ public class FragmentHome extends Fragment {
         rvGamesAdapter = new RVGamesAdapter(getContext(),gameModels);
         rvgameshome.setAdapter(rvGamesAdapter);
         // TODO : CHANGE TO RECYCLER VIEW
+    }
+    private void populateproplayermodel() {
+        proPlayerModels=new ArrayList<>();
+        proPlayerModels.add(new ProPlayerModel(R.drawable.jessback,"jess No Limit"));
+        proPlayerModels.add(new ProPlayerModel(R.drawable.lmback,"Lemon"));
+        proPlayerModels.add(new ProPlayerModel(R.drawable.bkback,"Brandon Kent"));
+        rvProplayerAdapter = new RVProplayerAdapter(getContext(),proPlayerModels);
+        rvproplayerhome.setAdapter(rvProplayerAdapter);
     }
 }
