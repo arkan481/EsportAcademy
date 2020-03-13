@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_centerInParent="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+    <ImageView
+        android:id="@+id/IVgamesitem"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mlback"
+        />
+    <TextView
+        android:id="@+id/tvgametitleitemid"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="32dp"
+        android:gravity="start"
+        android:textAlignment="viewStart"
+        android:layout_below="@id/IVgamesitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:text="Mobile Legends"
+        />
+
+</RelativeLayout>

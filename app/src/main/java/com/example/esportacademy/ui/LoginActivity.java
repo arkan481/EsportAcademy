@@ -9,6 +9,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.esportacademy.R;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvsignup;
     boolean eyeclicked = false;
     private EditText etpassword;
+    private RelativeLayout rllogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,15 @@ public class LoginActivity extends AppCompatActivity {
         tvsignup = findViewById(R.id.tvsignuplogid);
         iveyelog = findViewById(R.id.IVeyelogid);
         etpassword = findViewById(R.id.etpasswordlogid);
+        rllogin = findViewById(R.id.RLloginlogid);
+        rllogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,HomepageActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         iveyelog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
