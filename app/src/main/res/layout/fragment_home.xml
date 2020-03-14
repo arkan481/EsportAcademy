@@ -45,11 +45,13 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
            <androidx.viewpager.widget.ViewPager
+               android:paddingLeft="20dp"
+               android:paddingRight="20dp"
+               android:clipToPadding="false"
+               android:layout_centerHorizontal="true"
                android:id="@+id/vphome1id"
-               android:layout_centerInParent="true"
-               android:layout_width="330dp"
+               android:layout_width="wrap_content"
                android:layout_height="195dp"
-               android:background="@drawable/gopayback"
                />
            <LinearLayout
                android:layout_centerHorizontal="true"
@@ -60,23 +62,27 @@
                android:orientation="horizontal"
                >
                <ImageView
+                   android:id="@+id/circlewhite1"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/circlewhite"
                    />
                <ImageView
+                   android:id="@+id/circlewhite2"
                    android:layout_marginLeft="23dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/circlewhite"
                    />
                <ImageView
+                   android:id="@+id/circlewhite3"
                    android:layout_marginLeft="23dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/circlewhite"
                    />
                <ImageView
+                   android:id="@+id/circlewhite4"
                    android:layout_marginLeft="23dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -319,6 +325,8 @@
                 android:text="Pro Player"
                 />
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_marginTop="18dp"
                 android:id="@+id/rvproplayerid"
                 android:layout_width="match_parent"

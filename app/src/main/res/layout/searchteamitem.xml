@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="322dp"
+    android:layout_height="210dp"
+    android:background="@drawable/roundedsearchlayout"
+    >
+    <ImageView
+        android:id="@+id/ivteamsearch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/c9backplayer"
+        />
+    <ImageView
+        android:layout_below="@id/ivteamsearch1"
+        android:id="@+id/ivteamsearch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/c9backplayer3"
+        />
+    <ImageView
+        android:layout_toRightOf="@id/ivteamsearch1"
+        android:id="@+id/ivteamsearch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/c9backplayer4"
+        />
+    <ImageView
+        android:id="@+id/ivteamsearch4"
+        android:layout_toRightOf="@id/ivteamsearch2"
+        android:layout_below="@id/ivteamsearch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/c9backplayer2"
+        />
+    <ImageView
+        android:id="@+id/ivteamlogoid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/cloud9logo"
+        />
+    <TextView
+        android:id="@+id/tvteamnamesearchid"
+        android:layout_width="match_parent"
+        android:layout_height="23.01dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/roundedsearchlayout"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:text="Cloud 9"
+        />
+</RelativeLayout>
