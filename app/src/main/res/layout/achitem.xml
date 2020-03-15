@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="638dp"
+    android:background="@drawable/blacklayoutcorner"
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/goldtrophy"
+        />
+    <View
+        android:layout_marginTop="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@android:color/white"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        />
+    <EditText
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:background="@drawable/etwithborderwhite"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textColorHint="@android:color/white"
+        android:hint="Your Achievement"
+        android:textAlignment="center"
+        android:layout_gravity="center_vertical"
+        android:textStyle="italic"
+        />
+    <ImageView
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        android:background="@drawable/etwithborderwhite"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/camergoldfix"
+        />
+    <EditText
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:background="@drawable/etwithborderwhite"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textColorHint="@android:color/white"
+        android:hint="Description Achievement"
+        android:textAlignment="center"
+        android:layout_gravity="center_vertical"
+        android:textStyle="italic"
+        />
+
+</LinearLayout>

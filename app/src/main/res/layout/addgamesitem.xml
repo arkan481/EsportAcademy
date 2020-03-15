@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginBottom="19dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="11dp"
+    android:layout_marginRight="18dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bluerlbg"
+    >
+    <ImageView
+        android:id="@+id/ivaddgameimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cameragoldsmall"
+        />
+    <EditText
+        android:paddingLeft="3dp"
+        android:id="@+id/tvgamename"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3dp"
+        android:gravity="center_vertical"
+        android:layout_toLeftOf="@id/ivdropdown"
+        android:layout_toRightOf="@id/ivaddgameimage"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:hint="Game Name"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:background="@drawable/etwithborderwhite"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        />
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ivdropdown"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrowdown"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5.59dp"
+        />
+
+
+</RelativeLayout>

@@ -49,7 +49,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:paddingLeft="20dp"
-        android:drawableRight="@drawable/peoplegold"
+        android:drawableRight="@drawable/addpersongold"
         android:paddingRight="10dp"
         />
     <View

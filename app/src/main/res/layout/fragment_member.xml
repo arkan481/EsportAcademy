@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="17dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MemberFragment"
+    android:background="#373636"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="12dp"
+            android:id="@+id/LRmemberauto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/btnaddmember"
+            android:layout_marginTop="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/LRmemberauto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/addiconok"
+            />
+        <LinearLayout
+            android:layout_marginBottom="325dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="63.02dp"
+            android:layout_below="@id/btnaddmember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+           <View
+               android:layout_gravity="center"
+               android:layout_marginLeft="7dp"
+               android:layout_width="130dp"
+               android:layout_height="4dp"
+               android:background="@android:color/white"
+               />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="Member"
+                android:layout_marginLeft="11dp"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                />
+            <View
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_width="130dp"
+                android:layout_height="4dp"
+                android:background="@android:color/white"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+</ScrollView>

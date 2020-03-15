@@ -10,11 +10,11 @@
         </shape>
     </item>
     <item
-        android:bottom="20dp"
+        android:bottom="40dp"
         android:top="20dp"
         android:left="140dp"
         android:right="140dp"
-        android:drawable="@drawable/ic_photo_camera_black_24dp"
+        android:drawable="@drawable/camergoldfix"
         />
 
 </layer-list>

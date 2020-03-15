@@ -2,7 +2,9 @@ package com.example.esportacademy.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -25,6 +27,14 @@ public class SearchTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_team);
         gvteamfound = findViewById(R.id.gvteamfoundid);
         btnmaketeam = findViewById(R.id.btnmaketeamid);
+        btnmaketeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchTeamActivity.this,MakeTeamActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         populateteam();
     }
     private void populateteam() {
