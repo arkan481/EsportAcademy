@@ -69,6 +69,7 @@
         android:background="#000000"
         >
         <RelativeLayout
+            android:id="@+id/rlhomeicon"
             android:layout_gravity="center"
             android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
@@ -80,12 +81,14 @@
                 android:src="@drawable/ic_home_white_24dp"
                 />
             <ImageView
+                android:id="@+id/ivlamp1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/abstracttrans"
                 />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rlbookmarkicon"
             android:layout_gravity="center"
             android:layout_marginLeft="66.09dp"
             android:layout_width="wrap_content"
@@ -97,12 +100,14 @@
                 android:src="@drawable/ic_bookmark_border_grey_24dp"
                 />
             <ImageView
+                android:id="@+id/ivlamp2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/abstracttrans"
                 />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rltrophyicon"
             android:layout_gravity="center"
             android:layout_marginLeft="66.09dp"
             android:layout_width="wrap_content"
@@ -114,12 +119,14 @@
                 android:src="@drawable/trophyicon"
                 />
             <ImageView
+                android:id="@+id/ivlamp3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/abstracttrans"
                 />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rlprofileicon"
             android:layout_gravity="center"
             android:layout_marginLeft="50.09dp"
             android:layout_width="wrap_content"
@@ -132,6 +139,7 @@
                 android:src="@drawable/ic_account_circle_grey_24dp"
                 />
             <ImageView
+                android:id="@+id/ivlamp4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/abstracttrans"

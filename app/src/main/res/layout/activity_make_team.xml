@@ -16,6 +16,7 @@
             android:background="@drawable/camerabg"
             >
             <ImageView
+                android:id="@+id/ivbackbuttonmt"
                 android:layout_marginTop="11dp"
                 android:layout_marginLeft="10.8dp"
                 android:layout_width="wrap_content"
@@ -87,6 +88,7 @@
                         android:textStyle="bold"
                         />
                     <ImageView
+                        android:id="@+id/ivline1"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
@@ -110,6 +112,7 @@
                         android:textStyle="bold"
                         />
                     <ImageView
+                        android:id="@+id/ivline2"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
@@ -133,6 +136,7 @@
                         android:textStyle="bold"
                         />
                     <ImageView
+                        android:id="@+id/ivline3"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
@@ -156,6 +160,7 @@
                         android:textStyle="bold"
                         />
                     <ImageView
+                        android:id="@+id/ivline4"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"

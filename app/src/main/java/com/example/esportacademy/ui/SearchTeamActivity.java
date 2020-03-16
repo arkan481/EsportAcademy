@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.GridViewTeamFoundAdapter;
@@ -20,6 +21,7 @@ public class SearchTeamActivity extends AppCompatActivity {
     private GridView gvteamfound;
     private GridViewTeamFoundAdapter gridViewTeamFoundAdapter;
     private Button btnmaketeam;
+    private ImageView ivbackbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,14 @@ public class SearchTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_team);
         gvteamfound = findViewById(R.id.gvteamfoundid);
         btnmaketeam = findViewById(R.id.btnmaketeamid);
+        ivbackbutton = findViewById(R.id.ivbackbuttonsearch);
+
+        ivbackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         btnmaketeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
