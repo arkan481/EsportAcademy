@@ -11,6 +11,7 @@ import android.widget.GridView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.GridViewGalleryAdapter;
+import com.example.esportacademy.interfaces.maketeaminterface;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,9 +20,11 @@ public class GalleryFragment extends Fragment {
 
     private GridViewGalleryAdapter gridViewGalleryAdapter;
     private GridView gridView;
+    private maketeaminterface maketeaminterface;
 
-    public GalleryFragment() {
+    public GalleryFragment(maketeaminterface maketeaminterface) {
         // Required empty public constructor
+        this.maketeaminterface=maketeaminterface;
     }
 
 

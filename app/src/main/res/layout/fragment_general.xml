@@ -23,6 +23,8 @@
             android:text="Description"
             />
         <EditText
+            android:id="@+id/etdescgen"
+            android:text="haii"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
             android:ellipsize="start"

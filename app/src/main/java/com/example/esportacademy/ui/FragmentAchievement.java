@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.interfaces.maketeaminterface;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,9 +20,11 @@ public class FragmentAchievement extends Fragment {
 
     private LinearLayout lrach;
     private ImageView ivaddach;
+    private maketeaminterface maketeaminterface;
 
-    public FragmentAchievement() {
+    public FragmentAchievement(maketeaminterface maketeaminterface) {
         // Required empty public constructor
+        this.maketeaminterface=maketeaminterface;
     }
 
 

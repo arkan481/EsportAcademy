@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.interfaces.maketeaminterface;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +21,11 @@ public class MemberFragment extends Fragment {
 
     private LinearLayout lrmemberauto;
     private ImageView ivbtnaddmember;
+    private maketeaminterface maketeaminterface;
 
-    public MemberFragment() {
+    public MemberFragment(maketeaminterface maketeaminterface) {
         // Required empty public constructor
+        this.maketeaminterface=maketeaminterface;
     }
 
 

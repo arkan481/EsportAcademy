@@ -27,6 +27,7 @@
             android:orientation="horizontal"
             >
             <EditText
+                android:id="@+id/etsearchgames"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_width="265dp"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.GridViewTeamFoundAdapter;
@@ -22,11 +23,14 @@ public class SearchTeamActivity extends AppCompatActivity {
     private GridViewTeamFoundAdapter gridViewTeamFoundAdapter;
     private Button btnmaketeam;
     private ImageView ivbackbutton;
+    private TextView etsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_team);
+        Intent intent = getIntent();
+       etsearch = findViewById(R.id.etsearchgamess);
         gvteamfound = findViewById(R.id.gvteamfoundid);
         btnmaketeam = findViewById(R.id.btnmaketeamid);
         ivbackbutton = findViewById(R.id.ivbackbuttonsearch);
@@ -45,7 +49,11 @@ public class SearchTeamActivity extends AppCompatActivity {
                 finish();
             }
         });
+        if (intent.getStringExtra("search")!=null) {
+            etsearch.setText(intent.getStringExtra("search"));
+        }
         populateteam();
+
     }
     private void populateteam() {
         teamModels=new ArrayList<>();

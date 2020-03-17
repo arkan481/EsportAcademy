@@ -6,11 +6,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.TeamModel;
@@ -24,6 +26,7 @@ public class HomepageActivity extends AppCompatActivity {
     private ArrayList<TeamModel>teamModels;
     private RelativeLayout rlhome,rlbookmark,rltrophy,rlprofile;
     private ImageView ivlamp1,ivlamp2,ivlamp3,ivlamp4;
+    private TextView etsearchgames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,24 @@ public class HomepageActivity extends AppCompatActivity {
         rlprofile = findViewById(R.id.rlprofileicon);
         ivlamp1 = findViewById(R.id.ivlamp1);
         ivlamp2 = findViewById(R.id.ivlamp2);
+        etsearchgames = findViewById(R.id.etsearchgames);
         ivlamp3 = findViewById(R.id.ivlamp3);
         ivlamp4 = findViewById(R.id.ivlamp4);
         firstfragment();
 
+        etsearchgames.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction()==KeyEvent.KEYCODE_ENTER||event.getAction()==KeyEvent.ACTION_DOWN) {
+                    etsearchgames.setSingleLine();
+                    Intent intent = new Intent(HomepageActivity.this,SearchTeamActivity.class);
+                    intent.putExtra("search",etsearchgames.getText().toString());
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
         rlprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +87,7 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomepageActivity.this,SearchTeamActivity.class);
+                intent.putExtra("search",etsearchgames.getText().toString());
                 startActivity(intent);
             }
         });
