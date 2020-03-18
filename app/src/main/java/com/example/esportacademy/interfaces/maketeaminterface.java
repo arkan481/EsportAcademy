@@ -1,14 +1,22 @@
 package com.example.esportacademy.interfaces;
 
+import java.util.ArrayList;
+
 public interface maketeaminterface {
      void setDescription(String desc);
-     void setGames(String games);
-     void setAchievement(String ach);
-     void setaAhievementDesc(String achDesc);
-     void setMember(String member);
+     void setGames(ArrayList<String> games);
+     void setAchievement(ArrayList<String>achievements);
+     void setaAhievementDesc(ArrayList<String> achDesc);
+     void setMember(ArrayList<String> member);
+     void setMemberDesc(ArrayList<String>memberDesc);
+     void setGenReady(boolean ready);
+     void setAchReady(boolean ready);
+     void setGallReady(boolean ready);
+     void setMemberReady(boolean ready);
      String getDesc();
-     String getGames();
-     String getAchievement();
-     String getAchDesc();
-     String getMember();
+     ArrayList<String> getGames();
+     ArrayList<String> getAchievement();
+     ArrayList<String> getAchDesc();
+     ArrayList<String> getMember();
+     ArrayList<String> getMemberDesc();
 }

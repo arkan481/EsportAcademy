@@ -1,6 +1,7 @@
 package com.example.esportacademy.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -9,15 +10,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.interfaces.maketeaminterface;
+
+import java.util.ArrayList;
 
 public class MakeTeamActivity extends AppCompatActivity implements maketeaminterface {
 
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn;
-    private String description,games,achievement,achievementdesc,member;
+    private String description;
+    private ArrayList<String>games = new ArrayList<>();
+    private ArrayList<String>achievements = new ArrayList<>();
+    private ArrayList<String>achievementsdesc = new ArrayList<>();
+    private ArrayList<String>member = new ArrayList<>();
+    private ArrayList<String>memberdesc = new ArrayList<>();
+    private boolean genReady,achReady,gallReady,memReady;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +41,14 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         ivcreatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
-                new CreateTeamActivity(MakeTeamActivity.this);
-                startActivity(intent);
+                if (genReady!=true) {
+                    Toast.makeText(MakeTeamActivity.this,"pls",Toast.LENGTH_LONG).show();
+                }else {
+                    Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
+                    new CreateTeamActivity(MakeTeamActivity.this);
+                    startActivity(intent);
+                }
+
             }
         });
         lrgen.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +80,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         ivline2 = findViewById(R.id.ivline2);
         ivline3 = findViewById(R.id.ivline3);
         ivline4 = findViewById(R.id.ivline4);
-        firstfragment();
-
+        lrgen.performClick();
         ivbackbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +90,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
 
 
     }
+
+
     private void turnlineon(int i) {
         switch (i) {
             case 1:
@@ -114,7 +130,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         turnlineon(1);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.FRmaketeam,new FragmentGeneral(this),"general");
+        fragmentTransaction.add(R.id.FRmaketeam,new FragmentGeneral(this),"general");
         fragmentTransaction.commit();
     }
     private void secondfragment() {
@@ -145,23 +161,48 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public void setGames(String games) {
+    public void setGames(ArrayList<String>games) {
         this.games=games;
     }
 
     @Override
-    public void setAchievement(String ach) {
-        this.achievement=ach;
+    public void setAchievement(ArrayList<String> ach) {
+        this.achievements=ach;
     }
 
     @Override
-    public void setaAhievementDesc(String achDesc) {
-        this.achievementdesc=achDesc;
+    public void setaAhievementDesc(ArrayList<String> achDesc) {
+        this.achievementsdesc=achDesc;
     }
 
     @Override
-    public void setMember(String member) {
+    public void setMember(ArrayList<String> member) {
         this.member=member;
+    }
+
+    @Override
+    public void setMemberDesc(ArrayList<String> memberDesc) {
+        this.memberdesc=memberDesc;
+    }
+
+    @Override
+    public void setGenReady(boolean ready) {
+        this.genReady=ready;
+    }
+
+    @Override
+    public void setAchReady(boolean ready) {
+        this.achReady=ready;
+    }
+
+    @Override
+    public void setGallReady(boolean ready) {
+        this.gallReady=ready;
+    }
+
+    @Override
+    public void setMemberReady(boolean ready) {
+        this.memReady=ready;
     }
 
     @Override
@@ -170,22 +211,27 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public String getGames() {
+    public ArrayList<String> getGames() {
         return this.games;
     }
 
     @Override
-    public String getAchievement() {
-        return this.achievement;
+    public ArrayList<String> getAchievement() {
+        return this.achievements;
     }
 
     @Override
-    public String getAchDesc() {
-        return this.achievementdesc;
+    public ArrayList<String> getAchDesc() {
+        return this.achievementsdesc;
     }
 
     @Override
-    public String getMember() {
+    public ArrayList<String> getMember() {
         return this.member;
+    }
+
+    @Override
+    public ArrayList<String> getMemberDesc() {
+        return this.memberdesc;
     }
 }

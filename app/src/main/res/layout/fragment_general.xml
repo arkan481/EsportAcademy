@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="22dp"
     android:layout_width="match_parent"
@@ -7,96 +7,111 @@
     tools:context=".ui.FragmentGeneral"
     android:background="#373636"
     >
-    <LinearLayout
-        android:paddingLeft="11dp"
-        android:paddingRight="18dp"
+    <ImageView
+        android:id="@+id/btndonegeneralid"
+        android:elevation="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_check_circle_red_24dp"
+        />
+    <ScrollView
+        android:elevation="1dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:text="Description"
-            />
-        <EditText
-            android:id="@+id/etdescgen"
-            android:text="haii"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:ellipsize="start"
-            android:textAlignment="viewStart"
-            android:gravity="start"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="410dp"
-            android:background="@drawable/etwithborderwhite"
-            android:textSize="25sp"
-            android:hint="@string/hinttext"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textStyle="bold|italic"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="23sp"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="23dp"
-            android:textStyle="bold"
-            android:text="Games"
-            />
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/LRgamesitem"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
+            android:paddingLeft="11dp"
+            android:paddingRight="18dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:text="Description"
+                />
+            <EditText
+                android:id="@+id/etdescgen"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:ellipsize="start"
+                android:textAlignment="viewStart"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="410dp"
+                android:background="@drawable/etwithborderwhite"
+                android:textSize="25sp"
+                android:hint="@string/hinttext"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textStyle="bold|italic"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="23dp"
+                android:textStyle="bold"
+                android:text="Games"
+                />
+            <LinearLayout
+                android:id="@+id/LRgamesitem"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:id="@+id/ivaddgamegeneral"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/rectaddblack"
+                    />
+            </LinearLayout>
+            <View
+                android:id="@+id/separator1general"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="54dp"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/separatorbackground"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Recruitment"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="23dp"
+                />
             <ImageView
-                android:id="@+id/ivaddgamegeneral"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="37dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/rectaddblack"
+                android:src="@drawable/cameragoldbig"
                 />
-        </LinearLayout>
-        <View
-            android:id="@+id/separator1general"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="54dp"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/separatorbackground"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Recruitment"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="23dp"
-            />
-        <ImageView
-            android:layout_marginTop="37dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cameragoldbig"
-            />
-        <ImageView
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="70dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/addiconok"
-            />
-    </LinearLayout>
+<!--            <ImageView-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:layout_marginTop="70dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/addiconok"-->
+<!--                />-->
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

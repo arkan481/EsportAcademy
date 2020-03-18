@@ -7,6 +7,7 @@
     android:background="@drawable/blacklayoutcorner"
     >
     <EditText
+        android:id="@+id/etmemnameid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
@@ -37,6 +38,7 @@
             android:src="@drawable/camergoldfix"
             />
         <EditText
+            android:id="@+id/etmemdescid"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

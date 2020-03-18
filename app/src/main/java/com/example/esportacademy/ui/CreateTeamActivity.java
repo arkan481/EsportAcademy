@@ -11,13 +11,16 @@ import android.widget.TextView;
 import com.example.esportacademy.R;
 import com.example.esportacademy.interfaces.maketeaminterface;
 
+import java.util.ArrayList;
+
 public class CreateTeamActivity extends AppCompatActivity {
 
     private TextView tvcancelcreate;
     private Spinner spinner;
     private ArrayAdapter<String>arrayAdapter;
-    private String description,games,achievement,achievementdesc,member;
+    private String description;
     private maketeaminterface maketeaminterface;
+    private ArrayList<String> games,achievement,achievementdesc,member,memberDesc;
 
     public CreateTeamActivity() {
 
@@ -30,7 +33,19 @@ public class CreateTeamActivity extends AppCompatActivity {
         this.achievement=this.maketeaminterface.getAchievement();
         this.achievementdesc=this.maketeaminterface.getAchDesc();
         this.member=this.maketeaminterface.getMember();
-        System.out.println("testa"+this.description);
+        this.memberDesc=this.maketeaminterface.getMemberDesc();
+        System.out.println("the desc "+this.description);
+        for (int i=0;i<games.size();i++) {
+            System.out.println("the games "+games.get(i));
+        }
+        for (int i=0;i<achievement.size();i++) {
+            System.out.println("The ach "+achievement.get(i));
+            System.out.println("The ach desc "+achievementdesc.get(i));
+        }
+        for (int i =0;i<member.size();i++) {
+            System.out.println("The member name "+member.get(i));
+            System.out.println("The member desc "+memberDesc.get(i));
+        }
     }
 
     @Override

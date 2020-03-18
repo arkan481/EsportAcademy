@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="39dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +7,25 @@
     tools:context=".ui.GalleryFragment"
     android:background="#373636"
     >
-
-    <!-- TODO: Update blank fragment layout -->
-    <GridView
-        android:paddingLeft="8dp"
-        android:horizontalSpacing="18dp"
-        android:numColumns="3"
-        android:id="@+id/gvgallery"
+    <ImageView
+        android:elevation="2dp"
+        android:id="@+id/ivdonegall"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_check_circle_red_24dp"
+        />
+    <ScrollView
+        android:elevation="1dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <GridView
+            android:paddingLeft="8dp"
+            android:horizontalSpacing="18dp"
+            android:numColumns="3"
+            android:id="@+id/gvgallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
 
-</ScrollView>
+</RelativeLayout>
