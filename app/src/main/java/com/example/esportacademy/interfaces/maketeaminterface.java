@@ -12,7 +12,6 @@ public interface maketeaminterface {
      void setaAhievementDesc(ArrayList<String> achDesc);
      void setMember(ArrayList<String> member);
      void setMemberDesc(ArrayList<String>memberDesc);
-     void click();
      String getDesc();
      ArrayList<String> getGames();
      ArrayList<String> getAchievement();
