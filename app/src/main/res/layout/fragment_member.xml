@@ -7,14 +7,6 @@
     tools:context=".ui.MemberFragment"
     android:background="#373636"
     >
-    <ImageView
-        android:elevation="2dp"
-        android:id="@+id/ivbtndonemem"
-        android:layout_alignParentRight="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_check_circle_red_24dp"
-        />
     <ScrollView
         android:elevation="1dp"
         android:layout_width="match_parent"

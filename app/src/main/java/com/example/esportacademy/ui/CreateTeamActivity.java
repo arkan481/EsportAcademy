@@ -2,9 +2,11 @@ package com.example.esportacademy.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     private String description;
     private maketeaminterface maketeaminterface;
     private ArrayList<String> games,achievement,achievementdesc,member,memberDesc;
+    private EditText etnamecreate;
 
     public CreateTeamActivity() {
 
@@ -34,26 +37,29 @@ public class CreateTeamActivity extends AppCompatActivity {
         this.achievementdesc=this.maketeaminterface.getAchDesc();
         this.member=this.maketeaminterface.getMember();
         this.memberDesc=this.maketeaminterface.getMemberDesc();
-        System.out.println("the desc "+this.description);
-        for (int i=0;i<games.size();i++) {
-            System.out.println("the games "+games.get(i));
-        }
-        for (int i=0;i<achievement.size();i++) {
-            System.out.println("The ach "+achievement.get(i));
-            System.out.println("The ach desc "+achievementdesc.get(i));
-        }
-        for (int i =0;i<member.size();i++) {
-            System.out.println("The member name "+member.get(i));
-            System.out.println("The member desc "+memberDesc.get(i));
-        }
+//        System.out.println("the desc "+this.description);
+//        for (int i=0;i<games.size();i++) {
+//            System.out.println("the games "+games.get(i));
+//        }
+//        for (int i=0;i<achievement.size();i++) {
+//            System.out.println("The ach "+achievement.get(i));
+//            System.out.println("The ach desc "+achievementdesc.get(i));
+//        }
+//        for (int i =0;i<member.size();i++) {
+//            System.out.println("The member name "+member.get(i));
+//            System.out.println("The member desc "+memberDesc.get(i));
+//        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_team);
+        Intent intent =getIntent();
         tvcancelcreate = findViewById(R.id.tvcancelcreate);
+        etnamecreate = findViewById(R.id.etteamnamecrate);
         spinner = findViewById(R.id.spinnercreate);
+        etnamecreate.setText(intent.getStringExtra("teamname"));
         tvcancelcreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

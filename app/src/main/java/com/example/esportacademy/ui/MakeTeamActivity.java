@@ -1,13 +1,16 @@
 package com.example.esportacademy.ui;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -21,13 +24,14 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
 
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn;
+    private EditText etteamname;
     private String description;
     private ArrayList<String>games = new ArrayList<>();
     private ArrayList<String>achievements = new ArrayList<>();
     private ArrayList<String>achievementsdesc = new ArrayList<>();
     private ArrayList<String>member = new ArrayList<>();
     private ArrayList<String>memberdesc = new ArrayList<>();
-    private boolean genReady,achReady,gallReady,memReady;
+    private boolean memUpdating,genUpdating,achUpdating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +40,9 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         lrgen = findViewById(R.id.LRgenmtid);
         lrach = findViewById(R.id.LRachhmtid);
         lrgall = findViewById(R.id.LRgallerymtid);
+        etteamname=findViewById(R.id.etteamname);
         lrmem = findViewById(R.id.LRmembemtid);
         ivcreatebtn = findViewById(R.id.ivcreatebtn);
-        ivcreatebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (genReady!=true) {
-                    Toast.makeText(MakeTeamActivity.this,"pls",Toast.LENGTH_LONG).show();
-                }else {
-                    Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
-                    new CreateTeamActivity(MakeTeamActivity.this);
-                    startActivity(intent);
-                }
-
-            }
-        });
         lrgen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,9 +79,30 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
                 finish();
             }
         });
+        ivcreatebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dummyfragment();
+                new AlertDialog.Builder(MakeTeamActivity.this).setTitle("Confirm Customization").setMessage("Confirm Your Team Customization?").setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                        Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
+                        intent.putExtra("teamname",etteamname.getText().toString());
+                        new CreateTeamActivity(MakeTeamActivity.this);
+                        startActivity(intent);
 
+                    }
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+            }
+        });
     }
+
 
 
     private void turnlineon(int i) {
@@ -154,10 +167,31 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         fragmentTransaction.replace(R.id.FRmaketeam,new MemberFragment(this));
         fragmentTransaction.commit();
     }
+    private void dummyfragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FRmaketeam,new DummyFragment());
+        fragmentTransaction.commit();
+    }
 
     @Override
     public void setDescription(String desc) {
         this.description=desc;
+    }
+
+    @Override
+    public void setGenUpdating(boolean updating) {
+        this.genUpdating=updating;
+    }
+
+    @Override
+    public void setAchUpdating(boolean updating) {
+        this.achUpdating=updating;
+    }
+
+    @Override
+    public void setMemberUpdating(boolean updating) {
+        this.memUpdating=updating;
     }
 
     @Override
@@ -186,23 +220,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public void setGenReady(boolean ready) {
-        this.genReady=ready;
-    }
-
-    @Override
-    public void setAchReady(boolean ready) {
-        this.achReady=ready;
-    }
-
-    @Override
-    public void setGallReady(boolean ready) {
-        this.gallReady=ready;
-    }
-
-    @Override
-    public void setMemberReady(boolean ready) {
-        this.memReady=ready;
+    public void click() {
+        lrgen.performClick();
     }
 
     @Override
@@ -233,5 +252,20 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     @Override
     public ArrayList<String> getMemberDesc() {
         return this.memberdesc;
+    }
+
+    @Override
+    public boolean getGenUpdating() {
+        return this.genUpdating;
+    }
+
+    @Override
+    public boolean getAchUpdating() {
+        return this.achUpdating;
+    }
+
+    @Override
+    public boolean getMemberUpdating() {
+        return this.memUpdating;
     }
 }

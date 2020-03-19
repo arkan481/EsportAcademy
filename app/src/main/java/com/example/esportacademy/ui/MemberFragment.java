@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class MemberFragment extends Fragment {
 
     private LinearLayout lrmemberauto;
-    private ImageView ivbtnaddmember,ivbtndone;
+    private ImageView ivbtnaddmember;
     private maketeaminterface maketeaminterface;
     private ArrayList<EditText>etmemnamearr = new ArrayList<>();
     private ArrayList<EditText>etmemdescarr = new ArrayList<>();
@@ -43,35 +43,40 @@ public class MemberFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_member, container, false);
         lrmemberauto = v.findViewById(R.id.LRmemberauto);
         ivbtnaddmember = v.findViewById(R.id.btnaddmember);
-        ivbtndone = v.findViewById(R.id.ivbtndonemem);
-        ivbtndone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivbtndone.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_green_24dp));
-                maketeaminterface.setMember(getMemName());
-                maketeaminterface.setMemberDesc(getMemDesc());
-                maketeaminterface.setMemberReady(true);
-            }
-        });
         ivbtnaddmember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stateChanged();
-                populatemember(container);
+                addfirstview(container);
             }
         });
-        populatemember(container);
+        if (maketeaminterface.getMemberUpdating()==true) {
+            for (int i=0;i<maketeaminterface.getMember().size();i++) {
+                addfirstview(container);
+                etmemnamearr.get(i).setText(maketeaminterface.getMember().get(i));
+                etmemdescarr.get(i).setText(maketeaminterface.getMemberDesc().get(i));
+            }
+        }else {
+            addfirstview(container);
+            maketeaminterface.setMemberUpdating(false);
+        }
         return v;
     }
-    private void populatemember(ViewGroup container) {
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        maketeaminterface.setMemberUpdating(true);
+        maketeaminterface.setMember(getMemName());
+        maketeaminterface.setMemberDesc(getMemDesc());
+    }
+
+    private void addfirstview(ViewGroup container) {
         View k = LayoutInflater.from(getContext()).inflate(R.layout.memberitem,container,false);
         EditText etmemname = k.findViewById(R.id.etmemnameid);
         EditText etmemdesc = k.findViewById(R.id.etmemdescid);
         etmemnamearr.add(etmemname);
         etmemdescarr.add(etmemdesc);
         lrmemberauto.addView(k);
-        etNameValidator();
-        etDescValidator();
     }
 
     private ArrayList<String> getMemName() {
@@ -89,49 +94,5 @@ public class MemberFragment extends Fragment {
         return datas;
     }
 
-    private void etNameValidator() {
-        for (int i=0;i<etmemnamearr.size();i++) {
-            etmemnamearr.get(i).addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    stateChanged();
-                }
-            });
-        }
-    }
-    private void etDescValidator() {
-        for (int i=0;i<etmemdescarr.size();i++) {
-            etmemdescarr.get(i).addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    stateChanged();
-                }
-            });
-        }
-    }
-
-    private void stateChanged() {
-        ivbtndone.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_red_24dp));
-        maketeaminterface.setMemberReady(false);
-    }
 }

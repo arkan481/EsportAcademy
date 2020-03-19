@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,7 +33,6 @@ public class FragmentGeneral extends Fragment  {
     private maketeaminterface maketeaminterface;
     private EditText etdesc;
     private ArrayList<EditText>editTexts= new ArrayList<>();
-    private ImageView ivbtndonegen;
 
     public FragmentGeneral(maketeaminterface maketeaminterface) {
         // Required empty public constructor
@@ -46,46 +46,34 @@ public class FragmentGeneral extends Fragment  {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_general, container, false);
         etdesc= v.findViewById(R.id.etdescgen);
+        maketeaminterface.setGenUpdating(true);
         rlgames = v.findViewById(R.id.LRgamesitem);
         ivaddgamegeneral = v.findViewById(R.id.ivaddgamegeneral);
-        ivbtndonegen = v.findViewById(R.id.btndonegeneralid);
-
-        ivbtndonegen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivbtndonegen.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_green_24dp));
-                maketeaminterface.setDescription(etdesc.getText().toString());
-                maketeaminterface.setGames(getgamesdata());
-                maketeaminterface.setGenReady(true);
-            }
-        });
         ivaddgamegeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addfirstview(container);
-                stateChanged();
             }
         });
-
-        addfirstview(container);
-        etdesc.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        if (maketeaminterface.getGenUpdating()==true) {
+            etdesc.setText(maketeaminterface.getDesc());
+            for (int i=0;i<maketeaminterface.getGames().size();i++) {
+                addfirstview(container);
+                editTexts.get(i).setText(maketeaminterface.getGames().get(i));
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                stateChanged();
-            }
-        });
-
+        }else {
+            addfirstview(container);
+        }
         return v;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("the paused");
+        maketeaminterface.setDescription(etdesc.getText().toString());
+        maketeaminterface.setGames(getgamesdata());
+        maketeaminterface.setGenUpdating(true);
     }
 
     private void addfirstview(ViewGroup container) {
@@ -93,7 +81,6 @@ public class FragmentGeneral extends Fragment  {
         EditText editText = k.findViewById(R.id.tvgamename);
         editTexts.add(editText);
         rlgames.addView(k,rlgames.getChildCount()-1);
-        etgamesvalidator();
     }
     private ArrayList<String> getgamesdata() {
         final ArrayList<String> datas = new ArrayList<>();
@@ -102,28 +89,5 @@ public class FragmentGeneral extends Fragment  {
         }
         return datas;
     }
-    private void etgamesvalidator() {
-        for (int i=0;i<editTexts.size();i++) {
-            editTexts.get(i).addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    stateChanged();
-                }
-            });
-        }
-    }
-    private void stateChanged() {
-        ivbtndonegen.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_red_24dp));
-        maketeaminterface.setGenReady(false);
-    }
 }
