@@ -19,10 +19,11 @@
             android:src="@drawable/ealogoicon"
             />
         <LinearLayout
-            android:layout_marginLeft="12.18dp"
+            android:gravity="end"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/etroundedback"
             android:layout_gravity="center"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
@@ -30,9 +31,9 @@
                 android:id="@+id/etsearchgames"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:layout_width="265dp"
+                android:layout_width="245dp"
                 android:layout_height="34dp"
-                android:layout_gravity="center"
+                android:layout_gravity="start"
                 android:drawableLeft="@drawable/ic_search_black_24dp"
                 android:paddingLeft="7.00dp"
                 android:hint="Search Esport team or game"
@@ -41,6 +42,8 @@
                 android:textColor="#88888899"
                 />
             <Button
+                android:layout_gravity="end"
+                android:maxLines="1"
                 android:id="@+id/btnsearchid"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"

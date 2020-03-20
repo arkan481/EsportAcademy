@@ -38,6 +38,11 @@
         android:textStyle="italic"
         />
     <ImageView
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:id="@+id/ivachimage"
         android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="163dp"

@@ -38,6 +38,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private RelativeLayout rltopmt;
     private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn;
+    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto;
     private EditText etteamname;
     private ImageView ivcamerateamlogo;
     private String description;
@@ -46,10 +47,11 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private ArrayList<String>achievementsdesc = new ArrayList<>();
     private ArrayList<String>member = new ArrayList<>();
     private ArrayList<String>memberdesc = new ArrayList<>();
+    private byte[] recruitmentImage,achImage,gallImage,memPhoto;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int IMAGE_PICK_CODE_2 = 1002;
     private static final int PERMISSION_PICK_CODE =1001;
-    private boolean memUpdating,genUpdating,achUpdating;
+    private boolean memUpdating,genUpdating,achUpdating,gallUpdating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
 
                     }
                 }).show();
+                lrgen.performClick();
             }
         });
         ivcamerateamlogo.setOnClickListener(new View.OnClickListener() {
@@ -277,6 +280,11 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
+    public void setGallUpdating(boolean updating) {
+        this.gallUpdating=updating;
+    }
+
+    @Override
     public void setMemberUpdating(boolean updating) {
         this.memUpdating=updating;
     }
@@ -302,8 +310,48 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
+    public void setMemberPhoto(byte[] bytes) {
+        this.memPhoto=bytes;
+    }
+
+    @Override
+    public void setTempMemberPhoto(Uri uri) {
+        this.tempMemPhoto=uri;
+    }
+
+    @Override
     public void setMemberDesc(ArrayList<String> memberDesc) {
         this.memberdesc=memberDesc;
+    }
+
+    @Override
+    public void setRecruitmentImage(byte[] bytes) {
+        this.recruitmentImage=bytes;
+    }
+
+    @Override
+    public void setTempRecruitmentImage(Uri tempRecruitmentImage) {
+        this.tempRecruitment=tempRecruitmentImage;
+    }
+
+    @Override
+    public void setGalleryImages(byte[] bytes) {
+        this.gallImage=bytes;
+    }
+
+    @Override
+    public void setTempGalleryImages(Uri uri) {
+        this.tempGalleryImages=uri;
+    }
+
+    @Override
+    public void setAchImage(byte[] bytes) {
+        this.achImage=bytes;
+    }
+
+    @Override
+    public void setTempAchImage(Uri uri) {
+        this.tempAch=uri;
     }
 
     @Override
@@ -349,5 +397,50 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     @Override
     public boolean getMemberUpdating() {
         return this.memUpdating;
+    }
+
+    @Override
+    public boolean getGallUpdating() {
+        return this.gallUpdating;
+    }
+
+    @Override
+    public byte[] getRecruitmentImage() {
+        return this.recruitmentImage;
+    }
+
+    @Override
+    public byte[] getAchImage() {
+        return this.achImage;
+    }
+
+    @Override
+    public Uri getTempAchImage() {
+        return this.tempAch;
+    }
+
+    @Override
+    public Uri getTempRecruitmentImage() {
+        return this.tempRecruitment;
+    }
+
+    @Override
+    public byte[] getGalleryImages() {
+        return this.gallImage;
+    }
+
+    @Override
+    public Uri getTempGalleryImages() {
+        return this.tempGalleryImages;
+    }
+
+    @Override
+    public byte[] getMemberPhoto() {
+        return this.memPhoto;
+    }
+
+    @Override
+    public Uri getTempMemberPhoto() {
+        return this.tempMemPhoto;
     }
 }

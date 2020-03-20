@@ -7,17 +7,13 @@
     tools:context=".ui.GalleryFragment"
     android:background="#373636"
     >
-    <ScrollView
-        android:elevation="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <GridView
-            android:paddingLeft="8dp"
-            android:horizontalSpacing="18dp"
-            android:numColumns="3"
-            android:id="@+id/gvgallery"
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:id="@+id/rlgalleryimage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
+        </LinearLayout>
 </RelativeLayout>

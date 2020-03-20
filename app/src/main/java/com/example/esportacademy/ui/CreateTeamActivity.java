@@ -24,6 +24,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     private maketeaminterface maketeaminterface;
     private ArrayList<String> games,achievement,achievementdesc,member,memberDesc;
     private EditText etnamecreate;
+    private byte[] recruitmentImage;
 
     public CreateTeamActivity() {
 
@@ -36,6 +37,7 @@ public class CreateTeamActivity extends AppCompatActivity {
         this.achievement=this.maketeaminterface.getAchievement();
         this.achievementdesc=this.maketeaminterface.getAchDesc();
         this.member=this.maketeaminterface.getMember();
+        this.recruitmentImage=maketeaminterface.getRecruitmentImage();
         this.memberDesc=this.maketeaminterface.getMemberDesc();
 //        System.out.println("the desc "+this.description);
 //        for (int i=0;i<games.size();i++) {

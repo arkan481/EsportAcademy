@@ -5,10 +5,11 @@
     android:background="@drawable/galleryitembackground"
     >
     <ImageView
+        android:id="@+id/gallimage"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:src="@drawable/camergoldfix"
         />
 
