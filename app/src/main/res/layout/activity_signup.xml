@@ -34,7 +34,7 @@
         android:elevation="2dp"
         />
     <EditText
-        android:id="@+id/etusernamelogid"
+        android:id="@+id/etusernamesignid"
         android:paddingRight="20dp"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
         android:id="@+id/LRpwsignid"
         android:elevation="2dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/etusernamelogid"
+        android:layout_below="@id/etusernamesignid"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -132,7 +132,7 @@
         android:textSize="14sp"
         />
     <RelativeLayout
-        android:id="@+id/RLloginlogid"
+        android:id="@+id/RLSignupid"
         android:layout_centerHorizontal="true"
         android:background="@drawable/buttongradgreenvp3"
         android:layout_marginTop="63dp"
@@ -174,7 +174,7 @@
         android:layout_centerHorizontal="true"
         android:elevation="2dp"
         android:layout_marginTop="1dp"
-        android:layout_below="@id/RLloginlogid"
+        android:layout_below="@id/RLSignupid"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

@@ -9,6 +9,7 @@ import android.widget.Space;
 
 import com.example.esportacademy.MainActivity;
 import com.example.esportacademy.R;
+import com.example.esportacademy.app.UserSessionManager;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -20,9 +21,15 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (UserSessionManager.getInstance(SplashScreen.this).getUsername()!=null) {
+                    Intent intent = new Intent(SplashScreen.this,HomepageActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         },3000);
     }

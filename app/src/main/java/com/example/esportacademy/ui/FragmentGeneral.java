@@ -5,6 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -139,10 +145,11 @@ public class FragmentGeneral extends Fragment  {
         BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
         Bitmap bitmap = bitmapDrawable.getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,100,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return bytes;
     }
+
 
     private void pickImage() {
         Intent intentToGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);

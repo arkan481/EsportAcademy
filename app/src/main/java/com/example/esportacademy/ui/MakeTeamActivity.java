@@ -14,6 +14,8 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.example.esportacademy.R;
 import com.example.esportacademy.interfaces.maketeaminterface;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
@@ -37,7 +40,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
 
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private RelativeLayout rltopmt;
-    private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn;
+    private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn,ivbgteam;
     private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto;
     private EditText etteamname;
     private ImageView ivcamerateamlogo;
@@ -47,7 +50,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private ArrayList<String>achievementsdesc = new ArrayList<>();
     private ArrayList<String>member = new ArrayList<>();
     private ArrayList<String>memberdesc = new ArrayList<>();
-    private byte[] recruitmentImage,achImage,gallImage,memPhoto;
+    private byte[] recruitmentImage,achImage,gallImage,memPhoto,teamicon,teambg;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int IMAGE_PICK_CODE_2 = 1002;
     private static final int PERMISSION_PICK_CODE =1001;
@@ -64,6 +67,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         lrgall = findViewById(R.id.LRgallerymtid);
         etteamname=findViewById(R.id.etteamname);
         lrmem = findViewById(R.id.LRmembemtid);
+        ivbgteam = findViewById(R.id.ivbgteam);
         ivcreatebtn = findViewById(R.id.ivcreatebtn);
         lrgen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +115,10 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
 
                         Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
                         intent.putExtra("teamname",etteamname.getText().toString());
+                        intent.putExtra("teamicon",teamicon);
+                        intent.putExtra("teambg",teambg);
+                        intent.putExtra("teamdesc",description);
+                        intent.putExtra("recimage",recruitmentImage);
                         new CreateTeamActivity(MakeTeamActivity.this);
                         startActivity(intent);
 
@@ -131,6 +139,12 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
             }
         });
         rltopmt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        ivbgteam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 prepareToGallery(IMAGE_PICK_CODE_2);
@@ -163,6 +177,16 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         }
     }
 
+    private byte[] getImageBLOB(ImageView iv) {
+        Drawable drawable = iv.getDrawable();
+        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return bytes;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -180,18 +204,12 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             Uri test = data.getData();
-
             ivcamerateamlogo.setImageURI(test);
+            teamicon = getImageBLOB(ivcamerateamlogo);
         }else if (resultCode==RESULT_OK&&requestCode==IMAGE_PICK_CODE_2) {
             Uri test2 = data.getData();
-            ContentResolver contentResolver = getContentResolver();
-            try {
-                InputStream is = contentResolver.openInputStream(test2);
-                Drawable drawable = Drawable.createFromStream(is,test2.toString());
-                rltopmt.setBackground(drawable);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            ivbgteam.setImageURI(test2);
+            teambg = getImageBLOB(ivbgteam);
         }
     }
 
