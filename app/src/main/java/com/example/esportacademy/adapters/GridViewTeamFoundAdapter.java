@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.TeamModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,20 +42,14 @@ public class GridViewTeamFoundAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = LayoutInflater.from(context).inflate(R.layout.searchteamitem,parent,false);
-        ImageView image1,image2,image3,image4,teamlogo;
+        ImageView teamlogo,teambg;
         TextView teamname;
+        teambg = v.findViewById(R.id.ivteambgsearch);
         teamname = v.findViewById(R.id.tvteamnamesearchid);
-        image1 = v.findViewById(R.id.ivteamsearch1);
-        image2 = v.findViewById(R.id.ivteamsearch2);
-        image3 = v.findViewById(R.id.ivteamsearch3);
-        image4 = v.findViewById(R.id.ivteamsearch4);
         teamlogo = v.findViewById(R.id.ivteamlogoid);
         teamname.setText(teamModels.get(position).getTeamname());
-        image1.setImageResource(teamModels.get(position).getImage1());
-        image2.setImageResource(teamModels.get(position).getImage2());
-        image3.setImageResource(teamModels.get(position).getImage3());
-        image4.setImageResource(teamModels.get(position).getImage4());
-        teamlogo.setImageResource(teamModels.get(position).getTeamlogo());
+        Picasso.get().load(teamModels.get(position).getBglink()).into(teambg);
+        Picasso.get().load(teamModels.get(position).getLogolink()).into(teamlogo);
         return v;
     }
 }

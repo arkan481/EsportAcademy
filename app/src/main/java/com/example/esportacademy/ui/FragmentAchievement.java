@@ -152,7 +152,7 @@ public class FragmentAchievement extends Fragment {
         BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
         Bitmap bitmap = bitmapDrawable.getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,100,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return bytes;
     }

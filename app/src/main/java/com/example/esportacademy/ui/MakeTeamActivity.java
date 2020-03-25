@@ -117,6 +117,14 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
                         intent.putExtra("teamname",etteamname.getText().toString());
                         intent.putExtra("teamicon",teamicon);
                         intent.putExtra("teambg",teambg);
+                        intent.putExtra("games",games);
+                        intent.putExtra("gallimage",gallImage);
+                        intent.putExtra("membername",member);
+                        intent.putExtra("memberdesc",memberdesc);
+                        intent.putExtra("memphoto",memPhoto);
+                        intent.putExtra("achimage",achImage);
+                        intent.putExtra("achname",achievements);
+                        intent.putExtra("achdesc",achievementsdesc);
                         intent.putExtra("teamdesc",description);
                         intent.putExtra("recimage",recruitmentImage);
                         new CreateTeamActivity(MakeTeamActivity.this);
