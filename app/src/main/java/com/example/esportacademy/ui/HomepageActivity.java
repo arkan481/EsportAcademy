@@ -22,46 +22,34 @@ import java.util.ArrayList;
 public class HomepageActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
-    private Button btnsearch;
+
     private ArrayList<TeamModel>teamModels;
     private RelativeLayout rlhome,rlbookmark,rltrophy,rlprofile;
     private ImageView ivlamp1,ivlamp2,ivlamp3,ivlamp4;
-    private TextView etsearchgames;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         frameLayout = findViewById(R.id.FRhomeid);
-        btnsearch = findViewById(R.id.btnsearchid);
+
         rlhome = findViewById(R.id.rlhomeicon);
         rlbookmark = findViewById(R.id.rlbookmarkicon);
         rltrophy = findViewById(R.id.rltrophyicon);
         rlprofile = findViewById(R.id.rlprofileicon);
         ivlamp1 = findViewById(R.id.ivlamp1);
         ivlamp2 = findViewById(R.id.ivlamp2);
-        etsearchgames = findViewById(R.id.etsearchgames);
+
         ivlamp3 = findViewById(R.id.ivlamp3);
         ivlamp4 = findViewById(R.id.ivlamp4);
         firstfragment();
 
-        etsearchgames.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction()==KeyEvent.KEYCODE_ENTER||event.getAction()==KeyEvent.ACTION_DOWN) {
-                    etsearchgames.setSingleLine();
-                    Intent intent = new Intent(HomepageActivity.this,SearchTeamActivity.class);
-                    intent.putExtra("search",etsearchgames.getText().toString());
-                    startActivity(intent);
-                    return true;
-                }
-                return false;
-            }
-        });
+
         rlprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                turnlampon(4);
+                fourthfragment();
             }
         });
         rltrophy.setOnClickListener(new View.OnClickListener() {
@@ -83,14 +71,7 @@ public class HomepageActivity extends AppCompatActivity {
                 firstfragment();
             }
         });
-        btnsearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomepageActivity.this,SearchTeamActivity.class);
-                intent.putExtra("search",etsearchgames.getText().toString());
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void firstfragment() {
@@ -98,6 +79,13 @@ public class HomepageActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FRhomeid,new FragmentHome());
+        fragmentTransaction.commit();
+    }
+    private void fourthfragment() {
+        turnlampon(4);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FRhomeid,new UserProfileFragment());
         fragmentTransaction.commit();
     }
     private void turnlampon(int i) {

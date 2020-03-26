@@ -1,5 +1,6 @@
 package com.example.esportacademy.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.widget.NestedScrollView;
@@ -8,11 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.RVGamesAdapter;
@@ -38,6 +42,7 @@ public class FragmentHome extends Fragment {
     private ArrayList<GameModel> gameModels;
     private RecyclerView.Adapter rvadapter;
     private RVGamesAdapter rvGamesAdapter;
+    private Button btnsearch;
     private ArrayList<ProPlayerModel>proPlayerModels;
     private RVProplayerAdapter rvProplayerAdapter;
     private ViewPager autoviewpager;
@@ -45,6 +50,7 @@ public class FragmentHome extends Fragment {
     private VPHomeAutoAdapter vpHomeAutoAdapter;
     private int currentnewspos;
     private Timer timer;
+    private TextView etsearchgames;
     private ImageView circle1,circle2,circle3,circle4;
 
     public FragmentHome() {
@@ -61,6 +67,8 @@ public class FragmentHome extends Fragment {
         rvproplayerhome = v.findViewById(R.id.rvproplayerid);
         autoviewpager = v.findViewById(R.id.vphome1id);
         circle1 = v.findViewById(R.id.circlewhite1);
+        btnsearch = v.findViewById(R.id.btnsearchid);
+        etsearchgames = v.findViewById(R.id.etsearchgames);
         circle2 = v.findViewById(R.id.circlewhite2);
         circle3 = v.findViewById(R.id.circlewhite3);
         circle4 = v.findViewById(R.id.circlewhite4);
@@ -68,6 +76,27 @@ public class FragmentHome extends Fragment {
         populateproplayermodel();
         populatenews();
         newsslideshow();
+        btnsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),SearchTeamActivity.class);
+                intent.putExtra("search",etsearchgames.getText().toString());
+                startActivity(intent);
+            }
+        });
+        etsearchgames.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction()==KeyEvent.KEYCODE_ENTER||event.getAction()==KeyEvent.ACTION_DOWN) {
+                    etsearchgames.setSingleLine();
+                    Intent intent = new Intent(getContext(),SearchTeamActivity.class);
+                    intent.putExtra("search",etsearchgames.getText().toString());
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
         return v;
     }
     private void populategamemodel() {

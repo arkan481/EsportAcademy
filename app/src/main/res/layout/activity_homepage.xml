@@ -5,61 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.HomepageActivity">
-    <LinearLayout
-        android:id="@+id/LRappbarid"
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:orientation="horizontal"
-        android:background="#000000"
-        >
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="67.19dp"
-            android:layout_height="47.61dp"
-            android:src="@drawable/ealogoicon"
-            />
-        <LinearLayout
-            android:gravity="end"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/etroundedback"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <EditText
-                android:id="@+id/etsearchgames"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:layout_width="245dp"
-                android:layout_height="34dp"
-                android:layout_gravity="start"
-                android:drawableLeft="@drawable/ic_search_black_24dp"
-                android:paddingLeft="7.00dp"
-                android:hint="Search Esport team or game"
-                android:background="@drawable/etroundedback"
-                android:textSize="11sp"
-                android:textColor="#88888899"
-                />
-            <Button
-                android:layout_gravity="end"
-                android:maxLines="1"
-                android:id="@+id/btnsearchid"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bluebuttonbackrounded"
-                android:text="Cari"
-                android:textColor="@android:color/white"
-                android:textStyle="bold|italic"
-                android:textSize="18sp"
-                />
-        </LinearLayout>
-    </LinearLayout>
     <FrameLayout
         android:id="@+id/FRhomeid"
         android:layout_above="@id/LRbotappbar"
-        android:layout_below="@id/LRappbarid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#373636"

@@ -44,7 +44,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     private EditText etnamecreate;
     private byte[] recruitmentImage,teamicon,teambg,achImage,gallImage,memPhoto;
     private ProgressDialog progressDialog;
-    private String teamiconstring,teambgstring,achImageString,gallImageString,memPhotoString;
+    private String teamiconstring,teambgstring,achImageString,gallImageString,memPhotoString,rtsImageString;
 
     public CreateTeamActivity() {
 
@@ -94,21 +94,22 @@ public class CreateTeamActivity extends AppCompatActivity {
         achImageString = blobToString(achImage);
         memPhotoString = blobToString(memPhoto);
         gallImageString = blobToString(gallImage);
+        rtsImageString = blobToString(recruitmentImage);
         teambgstring = blobToString(teambg);
         ivcmot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insertTeam();
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        insertRts();
-//                        insertGames();
-//                        insertAch();
-//                        insertGall();
-//                        insertMember();
-//                    }
-//                },3000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        insertRts();
+                        insertGames();
+                        insertAch();
+                        insertGall();
+                        insertMember();
+                    }
+                },3000);
 
             }
         });
@@ -188,29 +189,30 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void insertGames() {
-            StringRequest stringRequest = new StringRequest(StringRequest.Method.POST,
-                    Server.URL_INSERT_GAME,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            System.out.println("game ok");
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            System.out.println("the error "+error.getMessage());
-                        }
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST,
+                Server.URL_INSERT_GAME,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println("game ok");
                     }
-            ){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
-                    params.put("gamename",games.get(0));
-                    return params;
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("game error");
+                    }
                 }
-            };
-            RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
+
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("gamename",games.get(0));
+                return params;
+            }
+        };
+        RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
 
     }
 
@@ -295,7 +297,7 @@ public class CreateTeamActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("rtsimage",blobToString(recruitmentImage));
+                params.put("rtsimage",rtsImageString);
                 return params;
             }
         };
