@@ -1,6 +1,8 @@
 package com.example.esportacademy.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.TeamModel;
+import com.example.esportacademy.ui.TeamDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,6 +53,13 @@ public class GridViewTeamFoundAdapter extends BaseAdapter {
         teamname.setText(teamModels.get(position).getTeamname());
         Picasso.get().load(teamModels.get(position).getBglink()).into(teambg);
         Picasso.get().load(teamModels.get(position).getLogolink()).into(teamlogo);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TeamDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
         return v;
     }
 }

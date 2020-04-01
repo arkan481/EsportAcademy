@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@drawable/bluerlbg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    >
+    <ImageView
+        android:id="@+id/ivgameitemdet"
+        android:layout_gravity="start"
+        android:layout_width="138dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/cameragoldsmall"
+        />
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:id="@+id/tvgamenamedet"
+        android:layout_toRightOf="@id/ivgameitemdet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Game Name"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        />
+</RelativeLayout>
