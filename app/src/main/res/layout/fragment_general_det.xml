@@ -78,16 +78,5 @@
 
         </LinearLayout>
     </ScrollView>
-    <Button
-        android:textSize="31sp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold|italic"
-        android:textAllCaps="false"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/buttongradbluevp3"
-        android:text="Join The Team"
-        />
 
 </RelativeLayout>

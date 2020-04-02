@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView
+    android:paddingTop="39dp"
+    android:paddingRight="3dp"
+    android:paddingLeft="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/GVgalldet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:numColumns="3"
+    android:verticalSpacing="29dp"
+    android:horizontalSpacing="11dp"
+    android:background="#373636"
+    android:paddingBottom="55dp"
+    />

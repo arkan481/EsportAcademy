@@ -14,7 +14,7 @@ import com.example.esportacademy.R;
 
 public class TeamDetailActivity extends AppCompatActivity {
 
-    private ImageView ivwlgen,ivwlach,ivwlgall,ivwlmem;
+    private ImageView ivwlgen,ivwlach,ivwlgall,ivwlmem,ivbackbtn;
     private LinearLayout lrgen,lrach,lrgall,lrmem;
 
     @Override
@@ -24,6 +24,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         ivwlgen = findViewById(R.id.ivwlgen);
         ivwlach = findViewById(R.id.ivwlach);
         ivwlgall = findViewById(R.id.ivwlgall);
+        ivbackbtn = findViewById(R.id.IVbackbtndet);
         ivwlmem = findViewById(R.id.ivwlmem);
         lrgen = findViewById(R.id.LRgendet);
         lrach = findViewById(R.id.LRachdet);
@@ -40,19 +41,25 @@ public class TeamDetailActivity extends AppCompatActivity {
         lrach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                turnWhiteLineOn(2);
+                secondFragment();
             }
         });
         lrgall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                turnWhiteLineOn(3);
+                thirdFragment();
             }
         });
         lrmem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                turnWhiteLineOn(4);
+                fourthFragment();
+            }
+        });
+        ivbackbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -63,6 +70,30 @@ public class TeamDetailActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frdetail,new GeneralDetFragment());
+        fragmentTransaction.commit();
+    }
+
+    private void secondFragment() {
+        turnWhiteLineOn(2);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frdetail,new FragmentAchDet());
+        fragmentTransaction.commit();
+    }
+
+    private void thirdFragment() {
+        turnWhiteLineOn(3);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frdetail,new GallFragmentDet());
+        fragmentTransaction.commit();
+    }
+
+    private void fourthFragment() {
+        turnWhiteLineOn(4);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frdetail,new MemberFragmentDet());
         fragmentTransaction.commit();
     }
 
