@@ -22,7 +22,7 @@
         />
     <TextView
         android:paddingTop="32.5dp"
-        android:id="@+id/etachnamedet"
+        android:id="@+id/tvachnamedet"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="114dp"
@@ -50,7 +50,7 @@
         android:src="@drawable/c9win"
         />
     <TextView
-        android:id="@+id/etachdesc"
+        android:id="@+id/tvachdescdet"
         android:gravity="center"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"

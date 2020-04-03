@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.TeamModel;
@@ -43,7 +44,7 @@ public class GridViewTeamFoundAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = LayoutInflater.from(context).inflate(R.layout.searchteamitem,parent,false);
         ImageView teamlogo,teambg;
         TextView teamname;
@@ -57,6 +58,11 @@ public class GridViewTeamFoundAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, TeamDetailActivity.class);
+                intent.putExtra("teambg",teamModels.get(position).getBglink());
+                intent.putExtra("teamlogo",teamModels.get(position).getLogolink());
+                intent.putExtra("teamname",teamModels.get(position).getTeamname());
+                intent.putExtra("teamdesc",teamModels.get(position).getDesc());
+                intent.putExtra("teamid",teamModels.get(position).getId());
                 context.startActivity(intent);
             }
         });

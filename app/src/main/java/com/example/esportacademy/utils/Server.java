@@ -12,6 +12,10 @@ public class Server {
     public static final String URL_INSERT_GALL = ROOT_URL+"insert_gall.php";
     public static final String URL_INSERT_MEMBER = ROOT_URL+"insert_member.php";
     public static final String URL_GET_ALLTEAM = ROOT_URL+"get_teams.php";
+    public static final String URL_GET_TEAM_GAMES = ROOT_URL+"get_games.php";
+    public static final String URL_GET_TEAM_RTS = ROOT_URL+"get_recruitments.php";
+    public static final String URL_GET_TEAM_ACH = ROOT_URL+"get_ach.php";
+    public static final String URL_GET_TEAM_GALL = ROOT_URL+"get_gall.php";
 
 
 

@@ -8,26 +8,28 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.esportacademy.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class GridViewGallDetAdapter extends BaseAdapter {
 
     private Context context;
+    private ArrayList<String> imagelink;
 
-    public GridViewGallDetAdapter(Context context) {
-        this.context=context;
+    public GridViewGallDetAdapter(Context context,ArrayList<String> imagelink) {
+        this.context = context;
+        this.imagelink = imagelink;
     }
 
-    int image[] = {R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall};
-
-    // TODO : Dummy Image
     @Override
     public int getCount() {
-        return image.length;
+        return imagelink.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return image[position];
+        return imagelink.get(position);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GridViewGallDetAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = LayoutInflater.from(context).inflate(R.layout.gallitemdet,parent,false);
         ImageView imageView = v.findViewById(R.id.gallimagedet);
-        imageView.setImageDrawable(context.getResources().getDrawable(image[position]));
+        Picasso.get().load(imagelink.get(position)).into(imageView);
         return v;
     }
 }

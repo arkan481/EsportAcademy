@@ -33,6 +33,7 @@ public class MemberFragmentDet extends Fragment {
         View v = inflater.inflate(R.layout.fragment_member_det, container, false);
         recyclerView = v.findViewById(R.id.rvmemberdet);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setNestedScrollingEnabled(false);
         populateMember();
         return v;
     }

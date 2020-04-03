@@ -46,6 +46,7 @@
                 />
         </RelativeLayout>
         <ImageView
+            android:id="@+id/ivteamlogodet"
             android:layout_width="72dp"
             android:layout_height="73dp"
             android:layout_centerInParent="true"

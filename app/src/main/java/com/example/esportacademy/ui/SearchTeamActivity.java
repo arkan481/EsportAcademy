@@ -93,7 +93,7 @@ public class SearchTeamActivity extends AppCompatActivity {
                             JSONArray jsonArray = object.getJSONArray("data");
                             for (int i=0;i<jsonArray.length();i++) {
                                 JSONObject data = jsonArray.getJSONObject(i);
-                                teamModels.add(new TeamModel(data.getString("bglink"),data.getString("logolink"),data.getString("teamname")));
+                                teamModels.add(new TeamModel(data.getString("id"),data.getString("bglink"),data.getString("logolink"),data.getString("teamname"),data.getString("teamdesc")));
                                 gridViewTeamFoundAdapter.notifyDataSetChanged();
                             }
                         }catch (JSONException e) {

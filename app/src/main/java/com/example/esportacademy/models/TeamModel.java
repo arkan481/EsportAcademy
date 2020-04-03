@@ -2,12 +2,30 @@ package com.example.esportacademy.models;
 
 public class TeamModel {
 
-    private String teamname,bglink,logolink;
+    private String id,teamname,bglink,logolink,desc;
 
-    public TeamModel(String bglink,String logolink, String teamname) {
+    public TeamModel(String id, String bglink, String logolink, String teamname,String desc) {
+        this.id = id;
+        this.teamname = teamname;
         this.bglink = bglink;
         this.logolink = logolink;
-        this.teamname = teamname;
+        this.desc = desc;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTeamname() {
