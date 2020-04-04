@@ -121,7 +121,6 @@ public class FragmentGeneral extends Fragment  {
             Uri uri = data.getData();
             ivrecruitment.setImageURI(uri);
             maketeaminterface.setTempRecruitmentImage(uri);
-            maketeaminterface.setRecruitmentImage(getImageBLOB(ivrecruitment));
         }else {
             Toast.makeText(getContext(),"You didn't set the image",Toast.LENGTH_LONG).show();
         }
@@ -139,17 +138,6 @@ public class FragmentGeneral extends Fragment  {
             pickImage();
         }
     }
-
-    private byte[] getImageBLOB(ImageView iv) {
-        Drawable drawable = iv.getDrawable();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return bytes;
-    }
-
 
     private void pickImage() {
         Intent intentToGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);

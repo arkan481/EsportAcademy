@@ -113,18 +113,9 @@ public class GalleryFragment extends Fragment {
             Uri uri = data.getData();
             gallimage.setImageURI(uri);
             maketeaminterface.setTempGalleryImages(uri);
-            maketeaminterface.setGalleryImages(getImageBLOB(gallimage));
         }else {
             Toast.makeText(getContext(),"You didn't set the image",Toast.LENGTH_LONG).show();
         }
     }
-    private byte[] getImageBLOB(ImageView iv) {
-        Drawable drawable = iv.getDrawable();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return bytes;
-    }
+
 }

@@ -135,7 +135,6 @@ public class MemberFragment extends Fragment {
         if (resultCode==getActivity().RESULT_OK&&requestCode==IMAGE_PICK_CODE) {
             Uri uri = data.getData();
             ivmemphoto.setImageURI(uri);
-            maketeaminterface.setMemberPhoto(getImageBLOB(ivmemphoto)); // here the index of mem photo converted to be blob
             maketeaminterface.setTempMemberPhoto(uri);
         }else {
             Toast.makeText(getContext(),"You didn't set the image",Toast.LENGTH_LONG).show();
@@ -159,17 +158,6 @@ public class MemberFragment extends Fragment {
         Intent intentToGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intentToGallery.setType("image/*");
         startActivityForResult(intentToGallery,IMAGE_PICK_CODE);
-    }
-
-
-    private byte[] getImageBLOB(ImageView iv) {
-        Drawable drawable = iv.getDrawable();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return bytes;
     }
 
 

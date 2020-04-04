@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +32,10 @@ import com.example.esportacademy.utils.Server;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,39 +47,30 @@ public class CreateTeamActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayAdapter<String>arrayAdapter;
     private String description;
-    private maketeaminterface maketeaminterface;
     private ArrayList<String> games,achievement,achievementdesc,member,memberDesc;
     private EditText etnamecreate;
-    private byte[] recruitmentImage,teamicon,teambg,achImage,gallImage,memPhoto;
-    private ProgressDialog progressDialog;
+    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto,tempBG,tempIcon;
+    private ProgressDialog progressDialog,progressDialog2;
     private String teamiconstring,teambgstring,achImageString,gallImageString,memPhotoString,rtsImageString;
 
     public CreateTeamActivity() {
 
     }
 
-    public CreateTeamActivity(maketeaminterface maketeaminterface) {
-        this.maketeaminterface=maketeaminterface;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("called 2");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_team);
         final Intent intent =getIntent();
         member = intent.getStringArrayListExtra("membername");
         memberDesc = intent.getStringArrayListExtra("memberdesc");
-        memPhoto = intent.getByteArrayExtra("memphoto");
-        gallImage = intent.getByteArrayExtra("gallimage");
-        teamicon = intent.getByteArrayExtra("teamicon");
-        teambg = intent.getByteArrayExtra("teambg");
         achievement = intent.getStringArrayListExtra("achname");
         achievementdesc = intent.getStringArrayListExtra("achdesc");
-        recruitmentImage = intent.getByteArrayExtra("recimage");
         this.games = intent.getStringArrayListExtra("games");
-        this.achImage = intent.getByteArrayExtra("achimage");
         description = intent.getStringExtra("teamdesc");
         progressDialog = new ProgressDialog(CreateTeamActivity.this);
+        progressDialog2 = new ProgressDialog(CreateTeamActivity.this);
         tvcancelcreate = findViewById(R.id.tvcancelcreate);
         ivcmot = findViewById(R.id.ivcmotid);
         etnamecreate = findViewById(R.id.etteamnamecrate);
@@ -90,12 +89,14 @@ public class CreateTeamActivity extends AppCompatActivity {
         );
         arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        teamiconstring = blobToString(teamicon);
-        achImageString = blobToString(achImage);
-        memPhotoString = blobToString(memPhoto);
-        gallImageString = blobToString(gallImage);
-        rtsImageString = blobToString(recruitmentImage);
-        teambgstring = blobToString(teambg);
+        // Get The Uri Image
+        tempRecruitment = intent.getParcelableExtra("recimage");
+        tempAch = intent.getParcelableExtra("achimage");
+        tempGalleryImages = intent.getParcelableExtra("gallimage");
+        tempMemPhoto = intent.getParcelableExtra("memphoto");
+        tempBG = intent.getParcelableExtra("teambg");
+        tempIcon = intent.getParcelableExtra("teamlogo");
+
         ivcmot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,8 +117,19 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void insertTeam() {
-        progressDialog.setMessage("Creating Your Team...");
-        progressDialog.show();
+        try {
+            progressDialog.setMessage("Creating Your Team...");
+            progressDialog.show();
+            // Converting The Images
+            teamiconstring = getImage(tempIcon);
+            teambgstring = getImage(tempBG);
+            achImageString = getImage(tempAch);
+            gallImageString = getImage(tempGalleryImages);
+            memPhotoString = getImage(tempMemPhoto);
+            rtsImageString = getImage(tempRecruitment);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST,
                 Server.URL_INSERT_TEAM,
                 new Response.Listener<String>() {
@@ -157,6 +169,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
     }
 
@@ -212,6 +225,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
 
     }
@@ -240,6 +254,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
     }
 
@@ -268,6 +283,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
     }
 
@@ -301,8 +317,18 @@ public class CreateTeamActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
     }
+
+    public String getImage(Uri uri) throws IOException {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.WEBP,5,byteArrayOutputStream);
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+            return blobToString(bytes);
+    }
+
     private String blobToString(byte[] bytes) {
         String image = Base64.encodeToString(bytes,Base64.DEFAULT);
         return image;

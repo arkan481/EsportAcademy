@@ -33,6 +33,7 @@ import com.example.esportacademy.interfaces.maketeaminterface;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private RelativeLayout rltopmt;
     private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn,ivbgteam;
-    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto;
+    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto,tempIcon,tempBG;
     private EditText etteamname;
     private ImageView ivcamerateamlogo;
     private String description;
@@ -50,7 +51,6 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private ArrayList<String>achievementsdesc = new ArrayList<>();
     private ArrayList<String>member = new ArrayList<>();
     private ArrayList<String>memberdesc = new ArrayList<>();
-    private byte[] recruitmentImage,achImage,gallImage,memPhoto,teamicon,teambg;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int IMAGE_PICK_CODE_2 = 1002;
     private static final int PERMISSION_PICK_CODE =1001;
@@ -112,22 +112,21 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
                 new AlertDialog.Builder(MakeTeamActivity.this).setTitle("Confirm Customization").setMessage("Confirm Your Team Customization?").setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
                         intent.putExtra("teamname",etteamname.getText().toString());
-                        intent.putExtra("teamicon",teamicon);
-                        intent.putExtra("teambg",teambg);
                         intent.putExtra("games",games);
-                        intent.putExtra("gallimage",gallImage);
                         intent.putExtra("membername",member);
                         intent.putExtra("memberdesc",memberdesc);
-                        intent.putExtra("memphoto",memPhoto);
-                        intent.putExtra("achimage",achImage);
                         intent.putExtra("achname",achievements);
                         intent.putExtra("achdesc",achievementsdesc);
                         intent.putExtra("teamdesc",description);
-                        intent.putExtra("recimage",recruitmentImage);
-                        new CreateTeamActivity(MakeTeamActivity.this);
+                        // Passing Image URI
+                        intent.putExtra("recimage",tempRecruitment);
+                        intent.putExtra("achimage",tempAch);
+                        intent.putExtra("teamlogo",tempIcon);
+                        intent.putExtra("teambg",tempBG);
+                        intent.putExtra("memphoto",tempMemPhoto);
+                        intent.putExtra("gallimage",tempGalleryImages);
                         startActivity(intent);
 
                     }
@@ -185,15 +184,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         }
     }
 
-    private byte[] getImageBLOB(ImageView iv) {
-        Drawable drawable = iv.getDrawable();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return bytes;
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -212,12 +203,13 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             Uri test = data.getData();
+            tempIcon = data.getData();
             ivcamerateamlogo.setImageURI(test);
-            teamicon = getImageBLOB(ivcamerateamlogo);
+
         }else if (resultCode==RESULT_OK&&requestCode==IMAGE_PICK_CODE_2) {
             Uri test2 = data.getData();
             ivbgteam.setImageURI(test2);
-            teambg = getImageBLOB(ivbgteam);
+            tempBG = data.getData();
         }
     }
 
@@ -336,11 +328,6 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public void setMemberPhoto(byte[] bytes) {
-        this.memPhoto=bytes;
-    }
-
-    @Override
     public void setTempMemberPhoto(Uri uri) {
         this.tempMemPhoto=uri;
     }
@@ -350,10 +337,6 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         this.memberdesc=memberDesc;
     }
 
-    @Override
-    public void setRecruitmentImage(byte[] bytes) {
-        this.recruitmentImage=bytes;
-    }
 
     @Override
     public void setTempRecruitmentImage(Uri tempRecruitmentImage) {
@@ -361,18 +344,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public void setGalleryImages(byte[] bytes) {
-        this.gallImage=bytes;
-    }
-
-    @Override
     public void setTempGalleryImages(Uri uri) {
         this.tempGalleryImages=uri;
-    }
-
-    @Override
-    public void setAchImage(byte[] bytes) {
-        this.achImage=bytes;
     }
 
     @Override
@@ -431,16 +404,6 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public byte[] getRecruitmentImage() {
-        return this.recruitmentImage;
-    }
-
-    @Override
-    public byte[] getAchImage() {
-        return this.achImage;
-    }
-
-    @Override
     public Uri getTempAchImage() {
         return this.tempAch;
     }
@@ -451,18 +414,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public byte[] getGalleryImages() {
-        return this.gallImage;
-    }
-
-    @Override
     public Uri getTempGalleryImages() {
         return this.tempGalleryImages;
-    }
-
-    @Override
-    public byte[] getMemberPhoto() {
-        return this.memPhoto;
     }
 
     @Override

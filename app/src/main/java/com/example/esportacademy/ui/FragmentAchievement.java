@@ -135,7 +135,6 @@ public class FragmentAchievement extends Fragment {
             ivachimage.setImageURI(uri);
             ivachimage.setScaleType(ImageView.ScaleType.CENTER_CROP);
             maketeaminterface.setTempAchImage(uri);
-            maketeaminterface.setAchImage(getImageBLOB(ivachimage));
         }else {
             Toast.makeText(getContext(),"You didn't set the image",Toast.LENGTH_LONG).show();
         }
@@ -145,16 +144,6 @@ public class FragmentAchievement extends Fragment {
         Intent intentToGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intentToGallery.setType("image/*");
         startActivityForResult(intentToGallery,IMAGE_PICK_CODE);
-    }
-
-    private byte[] getImageBLOB(ImageView iv) {
-        Drawable drawable = iv.getDrawable();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return bytes;
     }
 
     private ArrayList<String> getAchNameData() {
