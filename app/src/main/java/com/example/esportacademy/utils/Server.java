@@ -16,6 +16,7 @@ public class Server {
     public static final String URL_GET_TEAM_RTS = ROOT_URL+"get_recruitments.php";
     public static final String URL_GET_TEAM_ACH = ROOT_URL+"get_ach.php";
     public static final String URL_GET_TEAM_GALL = ROOT_URL+"get_gall.php";
+    public static final String URL_GET_TEAM_MEM = ROOT_URL+"get_member.php";
 
 
 

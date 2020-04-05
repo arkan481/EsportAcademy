@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@android:color/black"
+    android:layout_marginBottom="39dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="146dp"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="4dp"
+        >
+        <ImageView
+            android:id="@+id/ivnewsimagetour"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/newsimage1"
+            />
+    </androidx.cardview.widget.CardView>
+    <RelativeLayout
+        android:layout_marginLeft="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvnewshead"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Game MOBA Pertama Indonesia Lokapala Rilis Januari 2020"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tvNewsFoot"
+            android:layout_below="@id/tvnewshead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Senin, 4 November 2019 06:42 WIB"
+            android:textColor="#FFFFFFD6"
+            android:textSize="10sp"
+            />
+    </RelativeLayout>
+</LinearLayout>

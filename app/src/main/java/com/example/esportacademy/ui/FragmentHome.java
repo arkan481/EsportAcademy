@@ -103,6 +103,7 @@ public class FragmentHome extends Fragment {
         gameModels = new ArrayList<>();
         gameModels.add(new GameModel("Call Of Duty Mobile",R.drawable.codmback));
         gameModels.add(new GameModel("Escape From Tarkov",R.drawable.estfmback));
+        gameModels.add(new GameModel("LokaPala",R.drawable.lokapalagames));
         gameModels.add(new GameModel("Apex Legends",R.drawable.apexback));
         rvGamesAdapter = new RVGamesAdapter(getContext(),gameModels);
         rvgameshome.setAdapter(rvGamesAdapter);

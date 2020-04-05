@@ -1,17 +1,20 @@
 package com.example.esportacademy.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.GameModel;
+import com.example.esportacademy.ui.GameDetailActivity;
 
 import java.util.ArrayList;
 
@@ -33,9 +36,17 @@ public class RVGamesAdapter extends RecyclerView.Adapter<RVGamesAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.TVgametitle.setText(gameModels.get(position).getTitle());
         holder.IVgameimage.setImageResource(gameModels.get(position).getImage());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, GameDetailActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

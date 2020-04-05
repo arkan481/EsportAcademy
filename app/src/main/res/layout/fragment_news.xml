@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="25.9dp"
+    android:layout_height="match_parent"
+    tools:context=".ui.FragmentNews"
+    android:background="@android:color/black">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:background="#DCDADB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:elevation="2dp"
+                android:id="@+id/tvnewmod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mengenal Sosok Skar, Calon Petarung Mematikan di Lokapala!"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                />
+            <ImageView
+                android:elevation="1dp"
+                android:layout_below="@id/tvnewmod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skarlokapala"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="29dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/white"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingLeft="8dp"
+            android:id="@+id/RVnewstour"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="21dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

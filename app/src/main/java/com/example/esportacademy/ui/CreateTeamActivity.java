@@ -117,6 +117,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void insertTeam() {
+        Toast.makeText(CreateTeamActivity.this,"Converting Your Image...",Toast.LENGTH_SHORT).show();
         try {
             progressDialog.setMessage("Creating Your Team...");
             progressDialog.show();

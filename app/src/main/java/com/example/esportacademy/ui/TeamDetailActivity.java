@@ -124,9 +124,13 @@ public class TeamDetailActivity extends AppCompatActivity {
 
     private void fourthFragment() {
         turnWhiteLineOn(4);
+        Bundle bundle = new Bundle();
+        bundle.putString("teamid",teamid);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frdetail,new MemberFragmentDet());
+        Fragment fragment = new MemberFragmentDet();
+        fragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frdetail,fragment);
         fragmentTransaction.commit();
     }
 

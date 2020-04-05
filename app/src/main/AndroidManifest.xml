@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.TeamDetailActivity"></activity>
+        <activity android:name=".ui.GameDetailActivity"></activity>
+        <activity android:name=".ui.TeamDetailActivity" />
         <activity android:name=".ui.CreateTeamActivity" />
         <activity android:name=".ui.MakeTeamActivity" />
         <activity android:name=".ui.SearchTeamActivity" />
