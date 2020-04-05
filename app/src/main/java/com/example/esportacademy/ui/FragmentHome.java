@@ -57,7 +57,6 @@ public class FragmentHome extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,8 +96,16 @@ public class FragmentHome extends Fragment {
                 return false;
             }
         });
+
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        etsearchgames.setText("");
+    }
+
     private void populategamemodel() {
         gameModels = new ArrayList<>();
         gameModels.add(new GameModel("Call Of Duty Mobile",R.drawable.codmback));

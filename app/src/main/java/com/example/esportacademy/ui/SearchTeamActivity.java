@@ -44,7 +44,7 @@ public class SearchTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_team);
         Intent intent = getIntent();
         progressDialog = new ProgressDialog(SearchTeamActivity.this);
-       etsearch = findViewById(R.id.etsearchgamess);
+        etsearch = findViewById(R.id.etsearchgamess);
         gvteamfound = findViewById(R.id.gvteamfoundid);
         btnmaketeam = findViewById(R.id.btnmaketeamid);
         ivbackbutton = findViewById(R.id.ivbackbuttonsearch);

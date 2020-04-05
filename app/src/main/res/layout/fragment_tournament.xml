@@ -83,11 +83,12 @@
         android:background="@android:color/white"
         />
     <Button
+        android:maxLines="1"
         android:layout_marginTop="26dp"
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginRight="66dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
         android:background="@drawable/bgbbuttonstroke"
         android:text="Make Your Own Tournament"
         android:textColor="@android:color/white"

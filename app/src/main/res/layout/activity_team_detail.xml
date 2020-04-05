@@ -81,7 +81,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginLeft="22dp"
                 />
-            <LinearLayout
+            <RelativeLayout
                 android:clipToPadding="false"
                 android:paddingLeft="11dp"
                 android:layout_marginBottom="7dp"
@@ -91,6 +91,8 @@
                 android:orientation="horizontal"
                 >
                 <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:id="@+id/LRgendet"
                     android:clipToPadding="false"
                     android:layout_gravity="start"
@@ -116,6 +118,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_toRightOf="@id/LRgendet"
                     android:id="@+id/LRachdet"
                     android:layout_marginLeft="42dp"
                     android:clipToPadding="false"
@@ -141,6 +144,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_toRightOf="@id/LRachdet"
                     android:id="@+id/LRgalldet"
                     android:layout_marginLeft="34dp"
                     android:clipToPadding="false"
@@ -167,6 +171,10 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginRight="11dp"
+                    android:layout_marginEnd="11dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:id="@+id/LRmemdet"
                     android:layout_marginLeft="34dp"
                     android:clipToPadding="false"
@@ -194,7 +202,7 @@
                         android:src="@drawable/whitelinemaketeam"
                         />
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <FrameLayout

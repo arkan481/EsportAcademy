@@ -35,6 +35,7 @@
         android:elevation="2dp"
         />
     <EditText
+        android:textCursorDrawable="@drawable/color_cursor"
         android:id="@+id/etusernamelogid"
         android:paddingRight="20dp"
         android:layout_width="278dp"
@@ -64,6 +65,7 @@
         android:background="@drawable/etwhiteline"
         >
         <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
             android:inputType="textPassword"
             android:layout_marginTop="10dp"
             android:elevation="1dp"

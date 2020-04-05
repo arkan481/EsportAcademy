@@ -91,18 +91,20 @@
                         android:orientation="horizontal"
                         >
                         <ImageView
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/facebooklogo"
                             />
                         <ImageView
-                            android:layout_gravity="center"
+                            android:layout_gravity="center|center_vertical"
                             android:layout_marginLeft="23dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/gmaillogo"
                             />
                         <ImageView
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="23dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
