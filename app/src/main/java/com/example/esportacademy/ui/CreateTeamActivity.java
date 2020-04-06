@@ -3,9 +3,11 @@ package com.example.esportacademy.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -62,7 +64,7 @@ public class CreateTeamActivity extends AppCompatActivity {
         System.out.println("called 2");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_team);
-        final Intent intent =getIntent();
+        final Intent intent = getIntent();
         member = intent.getStringArrayListExtra("membername");
         memberDesc = intent.getStringArrayListExtra("memberdesc");
         achievement = intent.getStringArrayListExtra("achname");
@@ -96,41 +98,47 @@ public class CreateTeamActivity extends AppCompatActivity {
         tempMemPhoto = intent.getParcelableExtra("memphoto");
         tempBG = intent.getParcelableExtra("teambg");
         tempIcon = intent.getParcelableExtra("teamlogo");
-
         ivcmot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertTeam();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        insertRts();
-                        insertGames();
-                        insertAch();
-                        insertGall();
-                        insertMember();
-                    }
-                },3000);
-
+                new uploadToDB(CreateTeamActivity.this).execute();
             }
         });
+
     }
 
-    private void insertTeam() {
-        Toast.makeText(CreateTeamActivity.this,"Converting Your Image...",Toast.LENGTH_SHORT).show();
+    private void insertTeamAll() {
+        insertTeam();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                insertRts();
+                insertGames();
+                insertAch();
+                insertGall();
+                insertMember();
+            }
+            },3000);
+    }
+
+
+
+    private void convertImage () {
         try {
-            progressDialog.setMessage("Creating Your Team...");
-            progressDialog.show();
-            // Converting The Images
             teamiconstring = getImage(tempIcon);
             teambgstring = getImage(tempBG);
             achImageString = getImage(tempAch);
             gallImageString = getImage(tempGalleryImages);
             memPhotoString = getImage(tempMemPhoto);
             rtsImageString = getImage(tempRecruitment);
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void insertTeam() {
+        progressDialog.setMessage("Creating Your Team...");
+        progressDialog.show();
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST,
                 Server.URL_INSERT_TEAM,
                 new Response.Listener<String>() {
@@ -222,7 +230,11 @@ public class CreateTeamActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("gamename",games.get(0));
+                for (int i =0;i<games.size();i++) {
+                    params.put("gamename["+i+"]",games.get(i));
+                }
+
+
                 return params;
             }
         };
@@ -335,4 +347,39 @@ public class CreateTeamActivity extends AppCompatActivity {
         return image;
     }
 
+    private class uploadToDB extends AsyncTask<Void,Void,Void> {
+
+        CreateTeamActivity createTeamActivity;
+
+        public uploadToDB(CreateTeamActivity createTeamActivity) {
+            this.createTeamActivity = createTeamActivity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            createTeamActivity.progressDialog2.setMessage("Converting Your Image...");
+            createTeamActivity.progressDialog2.show();
+        }
+
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            createTeamActivity.convertImage();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            createTeamActivity.progressDialog2.dismiss();
+            createTeamActivity.insertTeamAll();
+        }
+    }
+
+
+
 }
+
+
+
+

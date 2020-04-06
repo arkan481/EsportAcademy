@@ -54,6 +54,7 @@ public class FragmentGeneral extends Fragment  {
     private static final int PERMISSION_PICK_CODE=1001;
     private static final int IMAGE_PICK_CODE = 1000;
 
+
     public FragmentGeneral(maketeaminterface maketeaminterface) {
         // Required empty public constructor
         this.maketeaminterface=maketeaminterface;
