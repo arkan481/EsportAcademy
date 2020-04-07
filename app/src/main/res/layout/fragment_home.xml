@@ -180,26 +180,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/TeamIcon1"
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
                         android:src="@drawable/cloud9logo"
                         />
                     <ImageView
+                        android:id="@+id/TeamIcon2"
                         android:layout_marginLeft="31dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
                         android:src="@drawable/tronicon"
                         />
                     <ImageView
+                        android:id="@+id/TeamIcon3"
                         android:layout_marginLeft="31dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
                         android:src="@drawable/oniclogo"
                         />
                     <ImageView
+                        android:id="@+id/TeamIcon4"
                         android:layout_marginLeft="31dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
                         android:src="@drawable/liquidicon"
                         />
                 </LinearLayout>
