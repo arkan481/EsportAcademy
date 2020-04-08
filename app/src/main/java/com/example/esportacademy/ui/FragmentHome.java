@@ -18,7 +18,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -41,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -97,20 +101,31 @@ public class FragmentHome extends Fragment {
         btnsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),SearchTeamActivity.class);
-                intent.putExtra("search",etsearchgames.getText().toString());
-                startActivity(intent);
+                if (etsearchgames.getText().toString().isEmpty()||etsearchgames.getText().toString().equals(" ")) {
+                    Toast.makeText(getContext(),"Please input the team name",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Intent intent = new Intent(getContext(),SearchTeamActivity.class);
+                    intent.putExtra("search",etsearchgames.getText().toString());
+                    startActivity(intent);
+                }
+
             }
         });
         etsearchgames.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction()==KeyEvent.KEYCODE_ENTER||event.getAction()==KeyEvent.ACTION_DOWN) {
-                    etsearchgames.setSingleLine();
-                    Intent intent = new Intent(getContext(),SearchTeamActivity.class);
-                    intent.putExtra("search",etsearchgames.getText().toString());
-                    startActivity(intent);
-                    return true;
+                    if (etsearchgames.getText().toString().isEmpty()||etsearchgames.getText().toString().equals(" ")) {
+                        Toast.makeText(getContext(),"Please input the team name",Toast.LENGTH_SHORT).show();
+                    }else {
+                        etsearchgames.setSingleLine();
+                        Intent intent = new Intent(getContext(),SearchTeamActivity.class);
+                        intent.putExtra("search",etsearchgames.getText().toString());
+                        startActivity(intent);
+                        return true;
+                    }
+
                 }
                 return false;
             }
@@ -192,6 +207,7 @@ public class FragmentHome extends Fragment {
         intent.putExtra("teamid",teamModels.get(3).getId());
         getContext().startActivity(intent);
     }
+
 
     private void populateTeam() {
         progressDialog.setMessage("Loading");

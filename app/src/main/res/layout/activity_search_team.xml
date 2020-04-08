@@ -23,6 +23,7 @@
             android:src="@drawable/arrowleftwhite"
             />
         <EditText
+            android:inputType="text"
             android:id="@+id/etsearchgamess"
             android:layout_width="301dp"
             android:layout_height="34dp"
