@@ -112,23 +112,28 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
                 new AlertDialog.Builder(MakeTeamActivity.this).setTitle("Confirm Customization").setMessage("Confirm Your Team Customization?").setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
-                        intent.putExtra("teamname",etteamname.getText().toString());
-                        intent.putExtra("games",games);
-                        intent.putExtra("membername",member);
-                        intent.putExtra("memberdesc",memberdesc);
-                        intent.putExtra("achname",achievements);
-                        intent.putExtra("achdesc",achievementsdesc);
-                        intent.putExtra("teamdesc",description);
-                        // Passing Image URI
-                        intent.putExtra("recimage",tempRecruitment);
-                        intent.putExtra("achimage",tempAch);
-                        intent.putExtra("teamlogo",tempIcon);
-                        intent.putExtra("teambg",tempBG);
-                        intent.putExtra("memphoto",tempMemPhoto);
-                        intent.putExtra("gallimage",tempGalleryImages);
-                        startActivity(intent);
-
+                        if (etteamname.getText().toString().isEmpty()||games.isEmpty()||member.isEmpty()||memberdesc.isEmpty()||achievements.isEmpty()||achievementsdesc.isEmpty()||description.isEmpty()) {
+                            Toast.makeText(MakeTeamActivity.this,"Please Fill out all the requisition",Toast.LENGTH_SHORT).show();
+                        }else if(tempRecruitment==null||tempAch==null||tempIcon==null||tempBG==null||tempMemPhoto==null||tempGalleryImages==null) {
+                            Toast.makeText(MakeTeamActivity.this,"1 or more pictures of every segment is needed",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent = new Intent(MakeTeamActivity.this,CreateTeamActivity.class);
+                            intent.putExtra("teamname",etteamname.getText().toString());
+                            intent.putExtra("games",games);
+                            intent.putExtra("membername",member);
+                            intent.putExtra("memberdesc",memberdesc);
+                            intent.putExtra("achname",achievements);
+                            intent.putExtra("achdesc",achievementsdesc);
+                            intent.putExtra("teamdesc",description);
+                            // Passing Image URI
+                            intent.putExtra("recimage",tempRecruitment);
+                            intent.putExtra("achimage",tempAch);
+                            intent.putExtra("teamlogo",tempIcon);
+                            intent.putExtra("teambg",tempBG);
+                            intent.putExtra("memphoto",tempMemPhoto);
+                            intent.putExtra("gallimage",tempGalleryImages);
+                            startActivity(intent);
+                        }
                     }
                 }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override

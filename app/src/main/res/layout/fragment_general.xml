@@ -88,24 +88,25 @@
                 android:textStyle="bold"
                 android:textSize="23dp"
                 />
-            <ImageView
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="11dp"
-                android:id="@+id/ivrecruitment"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="463dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="37dp"
                 android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="463dp"
-                android:src="@drawable/cameragoldbig"
-                android:background="@drawable/roundedivbackground"
-                />
-
+                app:cardCornerRadius="11dp"
+                app:cardBackgroundColor="@android:color/black"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
+                >
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/ivrecruitment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cameragoldbig"
+                    />
+            </androidx.cardview.widget.CardView>
 <!--            <ImageView-->
 <!--                android:layout_marginBottom="20dp"-->
 <!--                android:layout_marginTop="70dp"-->

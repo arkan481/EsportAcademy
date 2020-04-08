@@ -45,15 +45,24 @@
                 android:layout_marginTop="11dp"
                 />
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/ivteamlogodet"
-            android:layout_width="72dp"
-            android:layout_height="73dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/cloud9logo"
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:elevation="2dp"
-            android:scaleType="centerCrop"
-            />
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="38dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            android:outlineAmbientShadowColor="@android:color/transparent"
+            android:outlineSpotShadowColor="@android:color/transparent"
+            >
+            <ImageView
+                android:id="@+id/ivteamlogodet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/cloud9logo"
+                android:scaleType="centerCrop"
+                />
+        </androidx.cardview.widget.CardView>
         <RelativeLayout
             android:id="@+id/RLtoptd2"
             android:layout_below="@id/RLtoptd"
