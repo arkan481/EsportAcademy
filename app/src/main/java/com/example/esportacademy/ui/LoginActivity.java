@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("status")==1) {
                                 Toast.makeText(LoginActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
-                                UserSessionManager.getInstance(LoginActivity.this).setLogin(username);
+                                UserSessionManager.getInstance(LoginActivity.this).setLogin(jsonObject.getInt("id"),jsonObject.getString("username"));
                                 Intent intent = new Intent(LoginActivity.this,HomepageActivity.class);
                                 startActivity(intent);
                                 finish();
