@@ -40,7 +40,7 @@ public class TeamDetailActivity extends AppCompatActivity {
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private String teamname,logolink,bglink,teamdesc,teamid;
     private Button btnJoin;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog,progressDialog2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         this.logolink = intent.getStringExtra("teamlogo");
         this.bglink = intent.getStringExtra("teambg");
         progressDialog = new ProgressDialog(TeamDetailActivity.this);
+        progressDialog2 = new ProgressDialog(TeamDetailActivity.this);
         btnJoin = findViewById(R.id.btnjoin);
         ivTeamBg = findViewById(R.id.ivteambgdetail);
         tvTeamName = findViewById(R.id.tvteamnamedet);
@@ -68,6 +69,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         lrmem = findViewById(R.id.LRmemdet);
         loadTeam();
         firstFragment();
+        checkJoined();
         lrgen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +104,7 @@ public class TeamDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 joinTeam();
+                checkJoined();
             }
         });
     }
@@ -225,5 +228,44 @@ public class TeamDetailActivity extends AppCompatActivity {
                 ivwlmem.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+    private void checkJoined() {
+        progressDialog2.setMessage("Checking The teams...");
+        progressDialog2.show();
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Server.URL_GET_CHECK_JOIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog2.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getInt("status")==1) {
+                                Toast.makeText(TeamDetailActivity.this,"Joined",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(TeamDetailActivity.this,"not joined",Toast.LENGTH_SHORT).show();
+                            }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog2.dismiss();
+                        Toast.makeText(TeamDetailActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("teamid",teamid);
+                params.put("userid",String.valueOf(UserSessionManager.getInstance(TeamDetailActivity.this).getUserID()));
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestHandler.getInstance(TeamDetailActivity.this).addToRequestQueue(stringRequest);
     }
 }
