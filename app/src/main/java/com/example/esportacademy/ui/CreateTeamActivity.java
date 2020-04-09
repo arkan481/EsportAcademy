@@ -51,9 +51,11 @@ public class CreateTeamActivity extends AppCompatActivity {
     private String description;
     private ArrayList<String> games,achievement,achievementdesc,member,memberDesc;
     private EditText etnamecreate;
-    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto,tempBG,tempIcon;
+    private Uri tempRecruitment,tempAch,tempMemPhoto,tempBG,tempIcon;
+    private ArrayList<Uri> tempGalleryImages;
     private ProgressDialog progressDialog,progressDialog2;
-    private String teamiconstring,teambgstring,achImageString,gallImageString,memPhotoString,rtsImageString;
+    private String teamiconstring,teambgstring,achImageString,memPhotoString,rtsImageString;
+    private ArrayList<String> gallImageString;
 
     public CreateTeamActivity() {
 
@@ -61,7 +63,6 @@ public class CreateTeamActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("called 2");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_team);
         final Intent intent = getIntent();
@@ -94,7 +95,7 @@ public class CreateTeamActivity extends AppCompatActivity {
         // Get The Uri Image
         tempRecruitment = intent.getParcelableExtra("recimage");
         tempAch = intent.getParcelableExtra("achimage");
-        tempGalleryImages = intent.getParcelableExtra("gallimage");
+        tempGalleryImages = intent.getParcelableArrayListExtra("gallimage");
         tempMemPhoto = intent.getParcelableExtra("memphoto");
         tempBG = intent.getParcelableExtra("teambg");
         tempIcon = intent.getParcelableExtra("teamlogo");
@@ -128,7 +129,7 @@ public class CreateTeamActivity extends AppCompatActivity {
             teamiconstring = getImage(tempIcon);
             teambgstring = getImage(tempBG);
             achImageString = getImage(tempAch);
-            gallImageString = getImage(tempGalleryImages);
+            gallImageString = getImage2(tempGalleryImages);
             memPhotoString = getImage(tempMemPhoto);
             rtsImageString = getImage(tempRecruitment);
         }catch (IOException e) {
@@ -245,7 +246,7 @@ public class CreateTeamActivity extends AppCompatActivity {
 
     private void insertGall() {
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST,
-                Server.URL_INSERT_GALL,
+                Server.URL_INSERT_GALL_2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -263,7 +264,9 @@ public class CreateTeamActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("gallimage",gallImageString);
+                for (int i =0;i<gallImageString.size();i++) {
+                    params.put("gallimage["+i+"]",gallImageString.get(i));
+                }
                 return params;
             }
         };
@@ -332,6 +335,18 @@ public class CreateTeamActivity extends AppCompatActivity {
         };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(CreateTeamActivity.this).addToRequestQueue(stringRequest);
+    }
+
+    public ArrayList<String> getImage2(ArrayList<Uri> uris) throws IOException {
+        ArrayList<String> strings = new ArrayList<>();
+        for (int i =0;i<uris.size();i++) {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uris.get(i));
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.WEBP,5,byteArrayOutputStream);
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+            strings.add(Base64.encodeToString(bytes,Base64.DEFAULT));
+        }
+        return strings;
     }
 
     public String getImage(Uri uri) throws IOException {

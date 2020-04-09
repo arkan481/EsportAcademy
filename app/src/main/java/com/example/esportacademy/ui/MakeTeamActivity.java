@@ -42,7 +42,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private RelativeLayout rltopmt;
     private ImageView ivbackbutton,ivline1,ivline2,ivline3,ivline4,ivcreatebtn,ivbgteam;
-    private Uri tempRecruitment,tempAch,tempGalleryImages,tempMemPhoto,tempIcon,tempBG;
+    private Uri tempRecruitment,tempAch,tempMemPhoto,tempIcon,tempBG;
+    private ArrayList<Uri> tempGalleryImages;
     private EditText etteamname;
     private ImageView ivcamerateamlogo;
     private String description;
@@ -131,7 +132,8 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
                             intent.putExtra("teamlogo",tempIcon);
                             intent.putExtra("teambg",tempBG);
                             intent.putExtra("memphoto",tempMemPhoto);
-                            intent.putExtra("gallimage",tempGalleryImages);
+//                            intent.putExtra("gallimage",tempGalleryImages);
+                            intent.putParcelableArrayListExtra("gallimage",tempGalleryImages);
                             startActivity(intent);
                         }
                     }
@@ -349,7 +351,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public void setTempGalleryImages(Uri uri) {
+    public void setTempGalleryImages(ArrayList<Uri>uri) {
         this.tempGalleryImages=uri;
     }
 
@@ -419,7 +421,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
     }
 
     @Override
-    public Uri getTempGalleryImages() {
+    public ArrayList<Uri> getTempGalleryImages() {
         return this.tempGalleryImages;
     }
 

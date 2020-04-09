@@ -19,7 +19,7 @@ public interface maketeaminterface {
      void setTempMemberPhoto(Uri uri);
      void setMemberDesc(ArrayList<String>memberDesc);
      void setTempRecruitmentImage(Uri tempRecruitmentImage);
-     void setTempGalleryImages(Uri uri);
+     void setTempGalleryImages(ArrayList<Uri> uri);
      void setTempAchImage(Uri uri);
      String getDesc();
      ArrayList<String> getGames();
@@ -33,6 +33,6 @@ public interface maketeaminterface {
      boolean getGallUpdating();
      Uri getTempAchImage();
      Uri getTempRecruitmentImage();
-     Uri getTempGalleryImages();
+     ArrayList<Uri> getTempGalleryImages();
      Uri getTempMemberPhoto();
 }

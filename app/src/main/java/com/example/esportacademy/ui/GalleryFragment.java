@@ -24,9 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.adapters.GridViewGalleryAdapter;
 import com.example.esportacademy.interfaces.maketeaminterface;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,26 +38,44 @@ public class GalleryFragment extends Fragment {
     private maketeaminterface maketeaminterface;
     private static final int PERMISSION_PICK_CODE=1001;
     private static final int IMAGE_PICK_CODE = 1000;
-    private LinearLayout linearLayout;
-    private ImageView gallimage;
+    private GridViewGalleryAdapter gridViewGalleryAdapter;
+    private ImageView btnok;
+    private GridView gvGall;
+    private ArrayList<Uri> images = new ArrayList<>();
 
     public GalleryFragment(maketeaminterface maketeaminterface) {
-        // Required empty public constructor
         this.maketeaminterface=maketeaminterface;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_gallery, container, false);
-        linearLayout = v.findViewById(R.id.rlgalleryimage);
-        addFirstView(container);
+        gvGall = v.findViewById(R.id.gvGallery);
+        btnok = v.findViewById(R.id.btnok);
         if (maketeaminterface.getGallUpdating()==true) {
-            gallimage.setImageURI(maketeaminterface.getTempGalleryImages());
+            images = maketeaminterface.getTempGalleryImages();
+            populateGallery();
+        }else {
+            populateGallery();
         }
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (images.size()>5) {
+                    Toast.makeText(getContext(),"You have inputted the maximum number of photo",Toast.LENGTH_SHORT).show();
+                }else {
+                    prepareToGallery();
+                }
+
+            }
+        });
         return v;
+    }
+
+    private void populateGallery() {
+        gridViewGalleryAdapter = new GridViewGalleryAdapter(this.images,getContext());
+        gvGall.setAdapter(gridViewGalleryAdapter);
     }
 
     public void prepareToGallery() {
@@ -75,18 +95,6 @@ public class GalleryFragment extends Fragment {
         Intent intentToGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intentToGallery.setType("image/*");
         startActivityForResult(intentToGallery,IMAGE_PICK_CODE);
-    }
-
-    private void addFirstView(ViewGroup container) {
-        View v =LayoutInflater.from(getContext()).inflate(R.layout.galleryitem,container,false);
-        gallimage = v.findViewById(R.id.gallimage);
-        gallimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prepareToGallery();
-            }
-        });
-        linearLayout.addView(v);
     }
 
     @Override
@@ -111,8 +119,9 @@ public class GalleryFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode==getActivity().RESULT_OK&&requestCode==IMAGE_PICK_CODE) {
             Uri uri = data.getData();
-            gallimage.setImageURI(uri);
-            maketeaminterface.setTempGalleryImages(uri);
+            images.add(uri);
+            gridViewGalleryAdapter.notifyDataSetChanged();
+            maketeaminterface.setTempGalleryImages(images);
         }else {
             Toast.makeText(getContext(),"You didn't set the image",Toast.LENGTH_LONG).show();
         }

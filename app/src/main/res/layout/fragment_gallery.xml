@@ -6,14 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.GalleryFragment"
     android:background="#373636"
+    android:layout_marginBottom="10dp"
     >
-        <LinearLayout
-            android:paddingLeft="10dp"
-            android:id="@+id/rlgalleryimage"
+        <GridView
+            android:verticalSpacing="10dp"
+            android:paddingLeft="9dp"
+            android:id="@+id/gvGallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:numColumns="3"
             >
-
-        </LinearLayout>
+        </GridView>
+        <ImageView
+            android:id="@+id/btnok"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/addiconok"
+            android:layout_marginBottom="18.82dp"
+            />
 </RelativeLayout>
