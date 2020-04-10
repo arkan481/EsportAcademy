@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +42,7 @@ public class TeamDetailActivity extends AppCompatActivity {
     private LinearLayout lrgen,lrach,lrgall,lrmem;
     private String teamname,logolink,bglink,teamdesc,teamid;
     private Button btnJoin;
-    private ProgressDialog progressDialog,progressDialog2;
+    private ProgressDialog progressDialog,progressDialog2,progressDialog3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         this.bglink = intent.getStringExtra("teambg");
         progressDialog = new ProgressDialog(TeamDetailActivity.this);
         progressDialog2 = new ProgressDialog(TeamDetailActivity.this);
+        progressDialog3 = new ProgressDialog(TeamDetailActivity.this);
         btnJoin = findViewById(R.id.btnjoin);
         ivTeamBg = findViewById(R.id.ivteambgdetail);
         tvTeamName = findViewById(R.id.tvteamnamedet);
@@ -103,8 +106,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinTeam();
-                checkJoined();
+                new checkJoinClass(TeamDetailActivity.this).execute();
             }
         });
     }
@@ -116,13 +118,10 @@ public class TeamDetailActivity extends AppCompatActivity {
     }
 
     private void joinTeam() {
-        progressDialog.setMessage("Joining Team");
-        progressDialog.show();
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Server.URL_INSERT_JOIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(TeamDetailActivity.this,jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
@@ -134,7 +133,6 @@ public class TeamDetailActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
                         Toast.makeText(TeamDetailActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -229,6 +227,39 @@ public class TeamDetailActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private void leaveTeam() {
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Server.URL_UNJOIN_TEAM,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(TeamDetailActivity.this,jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(TeamDetailActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("teamid",teamid);
+                params.put("userid",String.valueOf(UserSessionManager.getInstance(TeamDetailActivity.this).getUserID()));
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestHandler.getInstance(TeamDetailActivity.this).addToRequestQueue(stringRequest);
+    }
+
     private void checkJoined() {
         progressDialog2.setMessage("Checking The teams...");
         progressDialog2.show();
@@ -240,9 +271,23 @@ public class TeamDetailActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("status")==1) {
-                                Toast.makeText(TeamDetailActivity.this,"Joined",Toast.LENGTH_SHORT).show();
+                                btnJoin.setBackground(getResources().getDrawable(R.drawable.buttonredvp3));
+                                btnJoin.setText("Leave Team");
+                                btnJoin.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        new leaveTeamClass(TeamDetailActivity.this).execute();
+                                    }
+                                });
                             }else {
-                                Toast.makeText(TeamDetailActivity.this,"not joined",Toast.LENGTH_SHORT).show();
+                                btnJoin.setBackground(getResources().getDrawable(R.drawable.buttongradbluevp3));
+                                btnJoin.setText("Join The Team");
+                                btnJoin.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        new checkJoinClass(TeamDetailActivity.this).execute();
+                                    }
+                                });
                             }
                         }catch (JSONException e) {
                             e.printStackTrace();
@@ -267,5 +312,55 @@ public class TeamDetailActivity extends AppCompatActivity {
         };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(TeamDetailActivity.this).addToRequestQueue(stringRequest);
+    }
+    private class checkJoinClass extends AsyncTask<Void,Void,Void> {
+        private TeamDetailActivity teamDetailActivity;
+
+        public checkJoinClass(TeamDetailActivity teamDetailActivity) {
+            this.teamDetailActivity = teamDetailActivity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("Joining Team");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            teamDetailActivity.joinTeam();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            teamDetailActivity.checkJoined();
+        }
+    }
+    private class leaveTeamClass extends AsyncTask<Void,Void,Void> {
+        private TeamDetailActivity teamDetailActivity;
+
+        public leaveTeamClass(TeamDetailActivity teamDetailActivity) {
+            this.teamDetailActivity = teamDetailActivity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+           progressDialog3.setMessage("Leaving Team...");
+           progressDialog3.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            teamDetailActivity.leaveTeam();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog3.dismiss();
+            teamDetailActivity.checkJoined();
+        }
     }
 }
