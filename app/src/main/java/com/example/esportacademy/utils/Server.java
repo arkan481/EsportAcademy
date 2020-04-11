@@ -21,5 +21,5 @@ public class Server {
     public static final String URL_GET_TEAM_BY_NAME = ROOT_URL+"get_team_by_name.php";
     public static final String URL_GET_CHECK_JOIN = ROOT_URL+"check_join.php";
     public static final String URL_UNJOIN_TEAM = ROOT_URL+"unjoin_team.php";
-
+    public static final String URL_GET_TEAM_MEMBER_ALL = ROOT_URL+"get_team_member.php";
 }

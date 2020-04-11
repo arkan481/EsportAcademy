@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.RVMemberDetAdapter;
 import com.example.esportacademy.app.RequestHandler;
+import com.example.esportacademy.models.TeamMemberModel;
 import com.example.esportacademy.utils.Server;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +43,9 @@ public class MemberFragmentDet extends Fragment {
     private RVMemberDetAdapter rvMemberDetAdapter;
     private TextView tvmemidk,tvmemdesc;
     private ImageView ivmemphoto;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog,progressDialog2;
     private String teamid;
+    private ArrayList<TeamMemberModel> teamMemberModels = new ArrayList<>();
 
     public MemberFragmentDet() {
         // Required empty public constructor
@@ -55,6 +58,7 @@ public class MemberFragmentDet extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_member_det, container, false);
         progressDialog = new ProgressDialog(getContext());
+        progressDialog2 = new ProgressDialog(getContext());
         tvmemidk = v.findViewById(R.id.tvmemidk);
         Bundle bundle = getArguments();
         teamid = bundle.getString("teamid");
@@ -108,7 +112,41 @@ public class MemberFragmentDet extends Fragment {
     }
 
     private void populateMember() {
-        rvMemberDetAdapter = new RVMemberDetAdapter(getContext());
-        recyclerView.setAdapter(rvMemberDetAdapter);
+        progressDialog2.show();
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Server.URL_GET_TEAM_MEMBER_ALL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog2.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("teamdata");
+                            for (int i =0;i<jsonArray.length();i++) {
+                                JSONObject data = jsonArray.getJSONObject(i);
+                                teamMemberModels.add(new TeamMemberModel(data.getString("username")));
+                            }
+                            rvMemberDetAdapter = new RVMemberDetAdapter(getContext(),teamMemberModels);
+                            recyclerView.setAdapter(rvMemberDetAdapter);
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog2.dismiss();
+                        Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("teamid",teamid);
+                return params;
+            }
+        };
+        RequestHandler.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 }

@@ -338,6 +338,7 @@ public class TeamDetailActivity extends AppCompatActivity {
             teamDetailActivity.checkJoined();
         }
     }
+    
     private class leaveTeamClass extends AsyncTask<Void,Void,Void> {
         private TeamDetailActivity teamDetailActivity;
 

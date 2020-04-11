@@ -11,13 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.models.TeamMemberModel;
+
+import java.util.ArrayList;
 
 public class RVMemberDetAdapter extends RecyclerView.Adapter<RVMemberDetAdapter.ViewHolder> {
     private Context context;
-    int image[] = {R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall,R.drawable.c9gall};
+    private ArrayList<TeamMemberModel> teamMemberModels;
 
-    public RVMemberDetAdapter (Context context) {
+    public RVMemberDetAdapter (Context context,ArrayList<TeamMemberModel> teamMemberModels) {
         this.context=context;
+        this.teamMemberModels = teamMemberModels;
     }
 
     @NonNull
@@ -29,13 +33,13 @@ public class RVMemberDetAdapter extends RecyclerView.Adapter<RVMemberDetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageDrawable(context.getResources().getDrawable(image[position]));
-        holder.textView.setText("name "+position);
+//        holder.imageView.setImageDrawable(context.getResources().getDrawable(image[position]));
+        holder.textView.setText(teamMemberModels.get(position).getUsername());
     }
 
     @Override
     public int getItemCount() {
-        return image.length;
+        return teamMemberModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -45,7 +49,7 @@ public class RVMemberDetAdapter extends RecyclerView.Adapter<RVMemberDetAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.imageView = itemView.findViewById(R.id.ivmemphotodet);
+//            this.imageView = itemView.findViewById(R.id.ivmemphotodet);
             this.textView = itemView.findViewById(R.id.tvmemnamedet);
         }
     }
