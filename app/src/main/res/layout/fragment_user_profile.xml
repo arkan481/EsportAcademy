@@ -184,7 +184,7 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="Manage My Teams"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:textSize="18sp"

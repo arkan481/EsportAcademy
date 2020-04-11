@@ -7,10 +7,11 @@
     app:cardCornerRadius="11dp">
     
     <ImageView
+        android:background="@android:color/black"
         android:id="@+id/ivmemphotodet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/c9gall"
+        android:src="@drawable/ic_person_black_24dp"
         android:scaleType="centerCrop"
         android:elevation="1dp"
         />
