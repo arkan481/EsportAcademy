@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,7 @@ public class FragmentHome extends Fragment {
     private RecyclerView rvgameshome,rvproplayerhome;
 
     private ArrayList<GameModel> gameModels;
+    private CardView fabhome;
     private RecyclerView.Adapter rvadapter;
     private ArrayList<TeamModel> teamModels = new ArrayList<>();
     private RVGamesAdapter rvGamesAdapter;
@@ -69,7 +71,8 @@ public class FragmentHome extends Fragment {
     private int currentnewspos;
     private Timer timer;
     private TextView etsearchgames;
-    private ImageView circle1,circle2,circle3,circle4,teamIcon1,teamIcon2,teamIcon3,teamIcon4;
+    private ImageView circle1,circle2,circle3,circle4,teamIcon1,teamIcon2,teamIcon3,teamIcon4,ivCross,ivadd,ivaddteam,ivaddTour;
+    private View separator;
 
     public FragmentHome() {
         // Required empty public constructor
@@ -80,7 +83,13 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        fabhome = v.findViewById(R.id.fabhome);
         progressDialog = new ProgressDialog(getContext());
+        separator = v.findViewById(R.id.viewsep);
+        ivCross = v.findViewById(R.id.ivcross);
+        ivaddteam = v.findViewById(R.id.ivaddteam);
+        ivaddTour = v.findViewById(R.id.ivaddtour);
+        ivadd = v.findViewById(R.id.ivaddwhtever);
         teamIcon1 = v.findViewById(R.id.TeamIcon1);
         teamIcon2 = v.findViewById(R.id.TeamIcon2);
         teamIcon3 = v.findViewById(R.id.TeamIcon3);
@@ -98,6 +107,37 @@ public class FragmentHome extends Fragment {
         populateproplayermodel();
         populatenews();
         newsslideshow();
+        fabHide();
+        ivaddteam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),MakeTeamActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ivaddTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"This feature is currently unavailable",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        ivCross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabHide();
+            }
+        });
+
+        ivadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabShow();
+            }
+        });
+
         btnsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,6 +246,28 @@ public class FragmentHome extends Fragment {
         intent.putExtra("teamdesc",teamModels.get(3).getDesc());
         intent.putExtra("teamid",teamModels.get(3).getId());
         getContext().startActivity(intent);
+    }
+
+    private void fabShow() {
+        ViewGroup.LayoutParams paramsforcv = (ViewGroup.LayoutParams) fabhome.getLayoutParams();
+        paramsforcv.height= (int)getResources().getDimension(R.dimen.cvheightboo);
+        fabhome.setLayoutParams(paramsforcv);
+        ivadd.setVisibility(View.GONE);
+        ivCross.setVisibility(View.VISIBLE);
+        ivaddteam.setVisibility(View.VISIBLE);
+        ivaddTour.setVisibility(View.VISIBLE);
+        separator.setVisibility(View.VISIBLE);
+    }
+
+    private void fabHide() {
+        ViewGroup.LayoutParams paramsforcv = (ViewGroup.LayoutParams) fabhome.getLayoutParams();
+        paramsforcv.height= (int)getResources().getDimension(R.dimen.cvheight);
+        fabhome.setLayoutParams(paramsforcv);
+        ivadd.setVisibility(View.VISIBLE);
+        ivCross.setVisibility(View.GONE);
+        ivaddteam.setVisibility(View.GONE);
+        ivaddTour.setVisibility(View.GONE);
+        separator.setVisibility(View.GONE);
     }
 
 
