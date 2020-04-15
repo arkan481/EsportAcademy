@@ -123,7 +123,7 @@ public class MemberFragmentDet extends Fragment {
                             JSONArray jsonArray = jsonObject.getJSONArray("teamdata");
                             for (int i =0;i<jsonArray.length();i++) {
                                 JSONObject data = jsonArray.getJSONObject(i);
-                                teamMemberModels.add(new TeamMemberModel(data.getString("username")));
+                                teamMemberModels.add(new TeamMemberModel(data.getString("username"),data.getString("userphoto")));
                             }
                             rvMemberDetAdapter = new RVMemberDetAdapter(getContext(),teamMemberModels);
                             recyclerView.setAdapter(rvMemberDetAdapter);

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.models.TeamMemberModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,11 @@ public class RVMemberDetAdapter extends RecyclerView.Adapter<RVMemberDetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.imageView.setImageDrawable(context.getResources().getDrawable(image[position]));
+        if(teamMemberModels.get(position).getPhoto()=="null") {
+            holder.imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_person_black_24dp));
+        }else {
+            Picasso.get().load(teamMemberModels.get(position).getPhoto()).into(holder.imageView);
+        }
         holder.textView.setText(teamMemberModels.get(position).getUsername());
     }
 
@@ -49,7 +54,7 @@ public class RVMemberDetAdapter extends RecyclerView.Adapter<RVMemberDetAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            this.imageView = itemView.findViewById(R.id.ivmemphotodet);
+            this.imageView = itemView.findViewById(R.id.ivmemphotodet);
             this.textView = itemView.findViewById(R.id.tvmemnamedet);
         }
     }
