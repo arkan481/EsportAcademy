@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.app.UserSessionManager;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -56,9 +57,10 @@ public class UserProfileFragment extends Fragment {
     }
     private void checkDetails() {
         if(UserSessionManager.getInstance(getContext()).hasDetails()) {
-            Picasso.get().load(UserSessionManager.getInstance(getContext()).getUserPhoto()).into(profPhoto);
+            Picasso.get().invalidate(UserSessionManager.getInstance(getContext()).getUserPhoto());
+            Picasso.get().load(UserSessionManager.getInstance(getContext()).getUserPhoto()).networkPolicy(NetworkPolicy.NO_CACHE).into(profPhoto);
         }else {
-
+            profPhoto.setImageDrawable(getResources().getDrawable(R.drawable.ic_person_black_24dp));
         }
     }
 }

@@ -37,6 +37,7 @@ import com.example.esportacademy.R;
 import com.example.esportacademy.app.RequestHandler;
 import com.example.esportacademy.app.UserSessionManager;
 import com.example.esportacademy.utils.Server;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -118,9 +119,12 @@ public class EditProfileFragment extends Fragment {
             System.out.println("hoyy");
             etemail.setText(UserSessionManager.getInstance(getContext()).getUserEmail());
             etname.setText(UserSessionManager.getInstance(getContext()).getName());
-            Picasso.get().load(UserSessionManager.getInstance(getContext()).getUserPhoto()).into(profphoto);
+            Picasso.get().invalidate(UserSessionManager.getInstance(getContext()).getUserPhoto());
+            Picasso.get().load(UserSessionManager.getInstance(getContext()).getUserPhoto()).networkPolicy(NetworkPolicy.NO_CACHE).into(profphoto);
         }else {
-            System.out.println("yah");
+            etemail.setText("");
+            etname.setText("");
+            profphoto.setImageDrawable(getResources().getDrawable(R.drawable.ic_person_black_24dp));
         }
     }
 

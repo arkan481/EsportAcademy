@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,6 +26,7 @@ import com.example.esportacademy.app.RequestHandler;
 import com.example.esportacademy.app.UserSessionManager;
 import com.example.esportacademy.utils.Server;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,11 +40,12 @@ public class LoginActivity extends AppCompatActivity {
     boolean eyeclicked = false;
     private EditText etpassword,etusername;
     private RelativeLayout rllogin;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog,progressDialog3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        progressDialog3 = new ProgressDialog(this);
         setContentView(R.layout.activity_login);
         ivback = findViewById(R.id.IVbackloginid);
         tvsignup = findViewById(R.id.tvsignuplogid);
@@ -101,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (jsonObject.getInt("status")==1) {
                                 Toast.makeText(LoginActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                                 UserSessionManager.getInstance(LoginActivity.this).setLogin(jsonObject.getInt("id"),jsonObject.getString("username"));
+                                getUserInformation();
                                 Intent intent = new Intent(LoginActivity.this,HomepageActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -116,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }
         ){
@@ -128,6 +132,49 @@ public class LoginActivity extends AppCompatActivity {
                 return params;
             }
         };
+        RequestHandler.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
+    }
+
+    private void getUserInformation() {
+        progressDialog3.setMessage("Getting Your Information");
+        progressDialog3.show();
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Server.URL_GET_USER_DETAILS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog3.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("data");
+                            for (int i=0;i<jsonArray.length();i++) {
+                                JSONObject data = jsonArray.getJSONObject(i);
+                                if (data.getString("name")=="null"&&data.getString("email")=="null"&&data.getString("userphoto")=="null") {
+                                    System.out.println("no details");
+                                }else {
+                                    UserSessionManager.getInstance(LoginActivity.this).setDetails(data.getString("name"),data.getString("email"),data.getString("userphoto"));
+                                }
+                            }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog3.dismiss();
+                        Toast.makeText(LoginActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("userid",String.valueOf(UserSessionManager.getInstance(LoginActivity.this).getUserID()));
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestHandler.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
     }
 }
