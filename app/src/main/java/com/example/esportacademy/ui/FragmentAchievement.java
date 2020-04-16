@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -92,6 +93,8 @@ public class FragmentAchievement extends Fragment {
         EditText etachname = k.findViewById(R.id.etachname);
         ivachimage = k.findViewById(R.id.ivachimage);
         EditText etachdesc = k.findViewById(R.id.etachdesc);
+        etachdesc.setHintTextColor(Color.DKGRAY);
+        etachname.setHintTextColor(Color.DKGRAY);
         achnameedittexts.add(etachname);
         achdescedittexts.add(etachdesc);
         ivachimage.setOnClickListener(new View.OnClickListener() {

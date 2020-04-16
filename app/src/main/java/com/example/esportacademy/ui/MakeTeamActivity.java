@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -100,6 +101,7 @@ public class MakeTeamActivity extends AppCompatActivity implements maketeaminter
         ivline3 = findViewById(R.id.ivline3);
         ivline4 = findViewById(R.id.ivline4);
         lrgen.performClick();
+        etteamname.setHintTextColor(Color.DKGRAY);
         ivbackbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

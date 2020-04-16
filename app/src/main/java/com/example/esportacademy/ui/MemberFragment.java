@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -98,6 +99,8 @@ public class MemberFragment extends Fragment {
                 prepareToGallery();
             }
         });
+        etmemname.setHintTextColor(Color.DKGRAY);
+        etmemdesc.setHintTextColor(Color.DKGRAY);
         etmemnamearr.add(etmemname);
         etmemdescarr.add(etmemdesc);
         lrmemberauto.addView(k);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -86,6 +87,7 @@ public class FragmentGeneral extends Fragment  {
         }else {
             addfirstview(container);
         }
+        etdesc.setHintTextColor(Color.GRAY);
         ivrecruitment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +151,7 @@ public class FragmentGeneral extends Fragment  {
     private void addfirstview(ViewGroup container) {
         View k = LayoutInflater.from(getContext()).inflate(R.layout.addgamesitem,container,false);
         EditText editText = k.findViewById(R.id.tvgamename);
+        editText.setHintTextColor(Color.GRAY);
         editTexts.add(editText);
         rlgames.addView(k,rlgames.getChildCount()-1);
     }
