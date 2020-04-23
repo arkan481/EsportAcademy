@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esportacademy.R;
 import com.example.esportacademy.adapters.RVNewsTourAdapter;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 public class FragmentNews extends Fragment {
 
     private RecyclerView rvNews;
+    private TextView tvNewsHeader;
+    private ImageView ivNewsHeader;
     private ArrayList<NewsTourModel> newsTourModels = new ArrayList<>();
     RVNewsTourAdapter rvNewsTourAdapter;
 
@@ -34,6 +38,8 @@ public class FragmentNews extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_news, container, false);
+        tvNewsHeader = v.findViewById(R.id.tvnewmod);
+        ivNewsHeader = v.findViewById(R.id.ivNewsHeader);
         rvNews = v.findViewById(R.id.RVnewstour);
         populateNews();
         return v;

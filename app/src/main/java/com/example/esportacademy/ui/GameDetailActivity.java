@@ -5,22 +5,27 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.models.GameModel;
 
 public class GameDetailActivity extends AppCompatActivity {
 
     private CardView cvNews,cvEvent,cvTour;
-    private ImageView ivNews,ivEvent,ivTour,ivBack;
+    private ImageView ivNews,ivEvent,ivTour,ivBack,ivGameHeader;
+    private GameModel gameModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
+        Intent intent = getIntent();
+        gameModel = intent.getParcelableExtra("gamemodel");
         cvNews = findViewById(R.id.cvNews);
         cvEvent = findViewById(R.id.cvEvent);
         ivBack = findViewById(R.id.ivbackbtngamedet);
@@ -28,6 +33,8 @@ public class GameDetailActivity extends AppCompatActivity {
         ivNews = findViewById(R.id.ivNewsGame);
         ivEvent = findViewById(R.id.ivEventGame);
         ivTour = findViewById(R.id.ivTourGame);
+        ivGameHeader = findViewById(R.id.ivGameHeader);
+        ivGameHeader.setImageDrawable(getResources().getDrawable(gameModel.getGameHeader()));
         firstFragment();
 
         cvNews.setOnClickListener(new View.OnClickListener() {

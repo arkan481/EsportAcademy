@@ -43,8 +43,8 @@ public class RVGamesAdapter extends RecyclerView.Adapter<RVGamesAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, GameDetailActivity.class);
+                intent.putExtra("gamemodel",gameModels.get(position));
                 context.startActivity(intent);
-
             }
         });
     }
