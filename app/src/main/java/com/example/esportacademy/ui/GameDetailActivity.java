@@ -2,6 +2,7 @@ package com.example.esportacademy.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -67,7 +68,11 @@ public class GameDetailActivity extends AppCompatActivity {
         moveFragment(1);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frnews,new FragmentNews());
+        Fragment fragmentNews = new FragmentNews();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("gamemodel",gameModel);
+        fragmentNews.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frnews,fragmentNews);
         fragmentTransaction.commit();
     }
 
@@ -75,7 +80,11 @@ public class GameDetailActivity extends AppCompatActivity {
         moveFragment(2);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frnews,new FragmentEvent());
+        Fragment fragmentEvent = new FragmentEvent();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("gamemodel",gameModel);
+        fragmentEvent.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frnews,fragmentEvent);
         fragmentTransaction.commit();
     }
 

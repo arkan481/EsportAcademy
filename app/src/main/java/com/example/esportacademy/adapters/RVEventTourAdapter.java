@@ -10,13 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esportacademy.R;
+import com.example.esportacademy.models.EventTourModel;
+import com.example.esportacademy.models.NewsTourModel;
+
+import java.util.ArrayList;
 
 public class RVEventTourAdapter extends RecyclerView.Adapter<RVEventTourAdapter.ViewHolder> {
 
     private Context context;
-    private int[] image = {R.drawable.event1,R.drawable.event2};
-    public RVEventTourAdapter(Context context) {
+    private ArrayList<EventTourModel> eventTourModels;
+    public RVEventTourAdapter(Context context,ArrayList<EventTourModel> eventTourModels) {
         this.context=context;
+        this.eventTourModels = eventTourModels;
     }
 
     @NonNull
@@ -28,12 +33,12 @@ public class RVEventTourAdapter extends RecyclerView.Adapter<RVEventTourAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageDrawable(context.getResources().getDrawable(image[position]));
+        holder.imageView.setImageDrawable(context.getResources().getDrawable(eventTourModels.get(position).getEventImage()));
     }
 
     @Override
     public int getItemCount() {
-        return image.length;
+        return eventTourModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

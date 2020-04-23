@@ -33,8 +33,10 @@ import com.example.esportacademy.adapters.VPHomeAutoAdapter;
 import com.example.esportacademy.adapters.ViewPagerAutoAdapter;
 import com.example.esportacademy.adapters.ViewPagerGamesAdapter;
 import com.example.esportacademy.app.RequestHandler;
+import com.example.esportacademy.models.EventTourModel;
 import com.example.esportacademy.models.GameModel;
 import com.example.esportacademy.models.NewsModel;
+import com.example.esportacademy.models.NewsTourModel;
 import com.example.esportacademy.models.ProPlayerModel;
 import com.example.esportacademy.models.TeamModel;
 import com.example.esportacademy.utils.Server;
@@ -73,6 +75,8 @@ public class FragmentHome extends Fragment {
     private TextView etsearchgames;
     private ImageView circle1,circle2,circle3,circle4,teamIcon1,teamIcon2,teamIcon3,teamIcon4,ivCross,ivadd,ivaddteam,ivaddTour;
     private View separator;
+    private ArrayList<NewsTourModel> mlNewsTour = new ArrayList<>();
+    private ArrayList<EventTourModel> eventTourModels = new ArrayList<>();
 
     public FragmentHome() {
         // Required empty public constructor
@@ -311,15 +315,34 @@ public class FragmentHome extends Fragment {
     }
 
     private void populategamemodel() {
+        generateMLNews();
+        generateMLEvent();
         gameModels = new ArrayList<>();
-        gameModels.add(new GameModel("Call Of Duty Mobile",R.drawable.codmback,R.drawable.lokapalagames));
-        gameModels.add(new GameModel("Escape From Tarkov",R.drawable.estfmback,R.drawable.lokapalagames));
-        gameModels.add(new GameModel("LokaPala",R.drawable.lokapalagames,R.drawable.lokapalagames));
-        gameModels.add(new GameModel("Apex Legends",R.drawable.apexback,R.drawable.lokapalagames));
-        gameModels.add(new GameModel("Mobile Legends",R.drawable.moblegendbg,R.drawable.mlheader));
+        gameModels.add(new GameModel("Call Of Duty Mobile",R.drawable.codmback,R.drawable.lokapalagames,R.drawable.skarlokapala,"Mengenal Sosok Skar, Calon Petarung Lokapala Yang Mematikan"));
+        gameModels.add(new GameModel("Escape From Tarkov",R.drawable.estfmback,R.drawable.lokapalagames,R.drawable.skarlokapala,"Mengenal Sosok Skar, Calon Petarung Lokapala Yang Mematikan"));
+        gameModels.add(new GameModel("LokaPala",R.drawable.lokapalagames,R.drawable.lokapalagames,R.drawable.skarlokapala,"Mengenal Sosok Skar, Calon Petarung Lokapala Yang Mematikan"));
+        gameModels.add(new GameModel("Apex Legends",R.drawable.apexback,R.drawable.lokapalagames,R.drawable.skarlokapala,"Mengenal Sosok Skar, Calon Petarung Lokapala Yang Mematikan"));
+        gameModels.add(new GameModel("Mobile Legends",R.drawable.moblegendbg,R.drawable.mlheader,R.drawable.mlnewsheader,"Ikuti Main Bareng Mobile Legends : Bang Bang Bersama Grace Eks JKT48 Berhadiah Jutaan Rupiah",mlNewsTour,eventTourModels));
         rvGamesAdapter = new RVGamesAdapter(getContext(),gameModels);
         rvgameshome.setAdapter(rvGamesAdapter);
     }
+
+    private void generateMLNews() {
+        /*/
+            DUMMY NEWS FOR MOBILE LEGEND
+         */
+        mlNewsTour.add(new NewsTourModel(R.drawable.mlnews1,"Saksikan MPL Season 5 WEEK 7 di Vidio","13 Mar 2020, 18:00 WIB"));
+        mlNewsTour.add(new NewsTourModel(R.drawable.mlnews2,"Lokapala Kenalkan Karakter Ilya, Anak Kecil Tapi Tanker!","13 Mar 2020, 18:00 WIB"));
+    }
+    private void generateMLEvent() {
+        /*/
+            DUMMY EVENT FOR MOBILE LEGEND
+         */
+        eventTourModels.add(new EventTourModel(R.drawable.eventml1));
+        eventTourModels.add(new EventTourModel(R.drawable.eventml2));
+        eventTourModels.add(new EventTourModel(R.drawable.eventml3));
+    }
+
     private void populateproplayermodel() {
         proPlayerModels=new ArrayList<>();
         proPlayerModels.add(new ProPlayerModel(R.drawable.jessback,"jess No Limit"));
