@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingTop="20dp"
+    android:paddingRight="13dp"
+    android:paddingLeft="17dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.FragmentContact"
+    android:background="@drawable/borderbot"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:text="Contact"
+        />
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:text="Facebook: Cedric Palapuz/ Melo Trinidad\n\nFacebook https://www.facebook.com/SureiyasEsports/?eid=ARAmaLB2wWT60c32kYJ0_TTToiqZAqwSskfwd3DZH3HzceQwOzZ77Nvr8YQDbeZSxUPj6uOpBhOKO2LA\n\nWA : 08170950093\n\nDISCORD : #!@RAYZ"
+        />
+</LinearLayout>

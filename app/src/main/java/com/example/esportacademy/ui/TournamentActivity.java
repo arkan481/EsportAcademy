@@ -1,6 +1,8 @@
 package com.example.esportacademy.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
@@ -28,12 +30,12 @@ public class TournamentActivity extends AppCompatActivity {
         vParticipants = findViewById(R.id.vParticipants);
         vBracket = findViewById(R.id.vBracket);
         vNewsTour = findViewById(R.id.vNewsTour);
-        turnGreenLight(1);
+        firstFragment();
 
         tvOverView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                turnGreenLight(1);
+                firstFragment();
             }
         });
 
@@ -64,6 +66,14 @@ public class TournamentActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void firstFragment() {
+        turnGreenLight(1);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frTour,new OverViewFragment());
+        fragmentTransaction.commit();
     }
 
     private void turnGreenLight(int i) {

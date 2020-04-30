@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingTop="20dp"
+    android:paddingRight="13dp"
+    android:paddingLeft="17dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.FragmentRules"
+    android:background="@drawable/borderbot"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:text="Rules"
+        />
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:text="Registration: 200 pesos Load Rules: 1 Day Tournament -No Pro Player -Stable Internet/ no remake -No outside spectators -Single elims -Finals BO3 -6 Players per team -2 Pause only per team, Ref will be provided by us. -10 Mins Late = DQ -All players must like and follow our page! -Team Captains must send their screenshots to us via PM. Captains can report their team's score."
+        />
+</LinearLayout>
